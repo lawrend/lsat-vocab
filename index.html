@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LSAT Vocabulary</title>
+<meta name="description" content="Spaced-repetition vocabulary drilling for the LSAT.">
+<meta name="theme-color" content="#131A17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #131A17;
+  --surface:   #1A2320;
+  --line:      #2C3A34;
+  --ink:       #EDE7DA;
+  --dim:       #96A29B;
+  --accent:    #E0A84B;
+  --accent-in: #1B1410;
+  --again:     #C4705A;
+  --serif: "Newsreader", Georgia, "Iowan Old Style", serif;
+  --sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:        #ECEFEA;
+    --surface:   #E3E7E1;
+    --line:      #CBD3CB;
+    --ink:       #17201C;
+    --dim:       #5C6862;
+    --accent:    #9C6412;
+    --accent-in: #FBF7EF;
+    --again:     #9E4632;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.shell {
+  min-height: 100dvh;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.1rem 1.4rem calc(1.1rem + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ---- top bar ---- */
+.bar { display: flex; flex-direction: column; gap: .55rem; }
+.rail { height: 2px; background: var(--line); position: relative; }
+.rail span {
+  position: absolute; inset: 0 auto 0 0;
+  width: 0%; background: var(--accent);
+  transition: width .28s ease;
+}
+.tally {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: .8rem; letter-spacing: .01em; color: var(--dim);
+}
+.tally b { color: var(--ink); font-weight: 500; }
+.tally button {
+  background: none; border: 0; padding: 0;
+  color: var(--dim); font-size: .8rem; text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-thickness: 1px;
+}
+.tally button:hover { color: var(--ink); }
+
+/* ---- the entry ---- */
+.entry {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1rem 0;
+}
+.word {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.9rem, 13vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.pos {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--dim);
+  margin: .5rem 0 0;
+}
+.back { margin-top: 1.6rem; }
+.back hr {
+  border: 0; border-top: 1px solid var(--line);
+  width: 3.5rem; margin: 0 0 1.1rem;
+}
+.definition {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 34ch;
+}
+.hint { color: var(--dim); font-size: .9rem; margin: 1.6rem 0 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .back { animation: rise .22s ease-out both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+}
+
+/* ---- controls ---- */
+.controls { display: grid; gap: .5rem; }
+.reveal {
+  width: 100%; padding: 1.05rem;
+  background: var(--accent); color: var(--accent-in);
+  border: 0; border-radius: 3px;
+  font-weight: 600; font-size: 1rem; letter-spacing: .01em;
+}
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.grade {
+  padding: .8rem .3rem .7rem;
+  background: transparent;
+  border: 1px solid var(--line); border-radius: 3px;
+  display: flex; flex-direction: column; align-items: center; gap: .25rem;
+  line-height: 1.1;
+}
+.grade b { font-weight: 600; font-size: .92rem; }
+.grade small { color: var(--dim); font-size: .72rem; font-variant-numeric: tabular-nums; }
+.grade:hover { border-color: var(--dim); }
+.grade[data-g="0"] { border-color: color-mix(in srgb, var(--again) 55%, transparent); }
+.grade[data-g="0"] b { color: var(--again); }
+.grade[data-g="2"] { background: var(--accent); border-color: var(--accent); }
+.grade[data-g="2"] b { color: var(--accent-in); }
+.grade[data-g="2"] small { color: color-mix(in srgb, var(--accent-in) 70%, transparent); }
+
+.keys { color: var(--dim); font-size: .74rem; text-align: center; margin: .15rem 0 0; }
+@media (hover: none) { .keys { display: none; } }
+
+/* ---- done / settings ---- */
+.done { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.done h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2rem, 8vw, 2.9rem); line-height: 1.1; margin: 0;
+}
+.done p { color: var(--dim); font-size: 1rem; max-width: 32ch; line-height: 1.6; }
+.linkish {
+  background: none; border: 0; padding: 0; color: var(--accent);
+  text-decoration: underline; text-underline-offset: 4px; font-size: .95rem;
+}
+
+.panel {
+  border-top: 1px solid var(--line);
+  padding-top: .9rem; font-size: .85rem; color: var(--dim);
+  display: grid; gap: .8rem;
+}
+.panel[hidden] { display: none; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.panel input[type="number"] {
+  width: 4.5rem; padding: .35rem .5rem; text-align: right;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px; font: inherit;
+}
+.panel .stats { font-variant-numeric: tabular-nums; }
+.danger { color: var(--again); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main class="shell">
+
+  <div class="bar">
+    <div class="rail"><span id="rail"></span></div>
+    <div class="tally">
+      <div id="tally">Loading…</div>
+      <button id="toggle-panel" type="button">Settings</button>
+    </div>
+  </div>
+
+  <section class="entry" id="entry" hidden>
+    <h1 class="word" id="word"></h1>
+    <p class="pos" id="pos" hidden></p>
+    <div class="back" id="back" hidden>
+      <hr>
+      <p class="definition" id="definition"></p>
+    </div>
+    <p class="hint" id="hint">Say the definition out loud, then check yourself.</p>
+  </section>
+
+  <section class="done" id="done" hidden>
+    <h2 id="done-title"></h2>
+    <p id="done-body"></p>
+    <p><button class="linkish" id="done-action" type="button" hidden></button></p>
+  </section>
+
+  <div class="controls" id="controls" hidden>
+    <button class="reveal" id="reveal" type="button">Show definition</button>
+    <div class="grades" id="grades" hidden>
+      <button class="grade" data-g="0" type="button"><b>Again</b><small></small></button>
+      <button class="grade" data-g="1" type="button"><b>Hard</b><small></small></button>
+      <button class="grade" data-g="2" type="button"><b>Good</b><small></small></button>
+      <button class="grade" data-g="3" type="button"><b>Easy</b><small></small></button>
+    </div>
+    <p class="keys" id="keys">Space to reveal · 1–4 to grade</p>
+  </div>
+
+  <div class="panel" id="panel" hidden>
+    <div class="row">
+      <label for="newper">New words per day</label>
+      <input type="number" id="newper" min="0" max="100" step="1">
+    </div>
+    <div class="row stats"><span>Deck</span><span id="stat-total"></span></div>
+    <div class="row stats"><span>Learning</span><span id="stat-learning"></span></div>
+    <div class="row stats"><span>Reviewing</span><span id="stat-review"></span></div>
+    <div class="row stats"><span>Not started</span><span id="stat-new"></span></div>
+    <div class="row">
+      <span>Progress is stored on this device only.</span>
+      <button class="danger" id="reset" type="button">Erase progress</button>
+    </div>
+  </div>
+
+</main>
+
+<script src="cards.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var PROGRESS_KEY = "lsatvocab.progress.v1";
+  var SETTINGS_KEY = "lsatvocab.settings.v1";
+  var DAY = 86400000;
+
+  // ---------- storage ----------
+  function read(key, fallback) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function write(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* private mode */ }
+  }
+
+  var progress = read(PROGRESS_KEY, {});
+  var settings = read(SETTINGS_KEY, { newPerDay: 10, newDate: "", newCount: 0 });
+  if (typeof settings.newPerDay !== "number") settings.newPerDay = 10;
+
+  // ---------- dates: local-time YYYY-MM-DD keys ----------
+  function dayKey(d) {
+    d = d || new Date();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    return d.getFullYear() + "-" + m + "-" + day;
+  }
+  function keyPlus(days) {
+    var d = new Date();
+    d.setHours(12, 0, 0, 0);
+    return dayKey(new Date(d.getTime() + days * DAY));
+  }
+  function daysUntil(key) {
+    var parts = key.split("-").map(Number);
+    var then = new Date(parts[0], parts[1] - 1, parts[2]);
+    var now = new Date();
+    now.setHours(0, 0, 0, 0);
+    return Math.round((then - now) / DAY);
+  }
+  var TODAY = dayKey();
+
+  if (settings.newDate !== TODAY) {
+    settings.newDate = TODAY;
+    settings.newCount = 0;
+    write(SETTINGS_KEY, settings);
+  }
+
+  // ---------- deck ----------
+  var cards = (window.VOCAB_CARDS || []).filter(function (c) {
+    return c && c.word && c.definition;
+  });
+
+  function card(word) { return progress[word] || null; }
+  function stateOf(word) {
+    var p = card(word);
+    if (!p) return "new";
+    return p.reps > 0 ? "review" : "learning";
+  }
+
+  // ---------- SM-2, lightly adapted ----------
+  // grade: 0 again, 1 hard, 2 good, 3 easy
+  function schedule(word, grade) {
+    var p = progress[word] || { ef: 2.5, ivl: 0, reps: 0, lapses: 0, due: TODAY };
+    if (grade === 0) {
+      p.lapses += 1;
+      p.reps = 0;
+      p.ivl = 0;
+      p.ef = Math.max(1.3, p.ef - 0.2);
+      p.due = TODAY;
+      progress[word] = p;
+      return 0; // stays in this session
+    }
+    if (p.reps === 0) {
+      p.ivl = grade === 1 ? 1 : grade === 2 ? 2 : 4;
+    } else {
+      if (grade === 1) { p.ivl = Math.max(1, Math.round(p.ivl * 1.2)); p.ef = Math.max(1.3, p.ef - 0.15); }
+      else if (grade === 2) { p.ivl = Math.max(1, Math.round(p.ivl * p.ef)); }
+      else { p.ivl = Math.max(1, Math.round(p.ivl * p.ef * 1.3)); p.ef = Math.min(2.7, p.ef + 0.1); }
+    }
+    p.reps += 1;
+    p.due = keyPlus(p.ivl);
+    progress[word] = p;
+    return p.ivl;
+  }
+
+  function preview(word, grade) {
+    var p = card(word);
+    if (grade === 0) return "soon";
+    if (!p || p.reps === 0) return fmt(grade === 1 ? 1 : grade === 2 ? 2 : 4);
+    if (grade === 1) return fmt(Math.max(1, Math.round(p.ivl * 1.2)));
+    if (grade === 2) return fmt(Math.max(1, Math.round(p.ivl * p.ef)));
+    return fmt(Math.max(1, Math.round(p.ivl * p.ef * 1.3)));
+  }
+  function fmt(days) {
+    if (days < 30) return days + "d";
+    if (days < 365) return Math.round(days / 30) + "mo";
+    return (Math.round(days / 36.5) / 10) + "y";
+  }
+
+  // ---------- the session queue ----------
+  var queue = [];
+  var graded = 0;
+  var revealed = false;
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function buildQueue(extraNew) {
+    var due = [];
+    var fresh = [];
+    cards.forEach(function (c) {
+      var p = card(c.word);
+      if (!p) fresh.push(c);
+      else if (daysUntil(p.due) <= 0) due.push(c);
+    });
+    var allowance = Math.max(0, settings.newPerDay - settings.newCount) + (extraNew || 0);
+    queue = shuffle(due).concat(fresh.slice(0, allowance));
+    graded = 0;
+  }
+
+  function countDue() {
+    var n = 0;
+    cards.forEach(function (c) {
+      var p = card(c.word);
+      if (p && daysUntil(p.due) <= 0) n++;
+    });
+    return n;
+  }
+  function countNewRemaining() {
+    return cards.filter(function (c) { return !card(c.word); }).length;
+  }
+  function nextDueDate() {
+    var best = null;
+    cards.forEach(function (c) {
+      var p = card(c.word);
+      if (!p) return;
+      var d = daysUntil(p.due);
+      if (d > 0 && (best === null || d < best)) best = d;
+    });
+    return best;
+  }
+
+  // ---------- DOM ----------
+  var $ = function (id) { return document.getElementById(id); };
+  var el = {
+    rail: $("rail"), tally: $("tally"), entry: $("entry"), word: $("word"), pos: $("pos"),
+    back: $("back"), definition: $("definition"), hint: $("hint"), controls: $("controls"),
+    reveal: $("reveal"), grades: $("grades"), keys: $("keys"), done: $("done"),
+    doneTitle: $("done-title"), doneBody: $("done-body"), doneAction: $("done-action"),
+    panel: $("panel"), togglePanel: $("toggle-panel"), newper: $("newper"), reset: $("reset")
+  };
+
+  function render() {
+    var current = queue[0];
+    if (!current) return renderDone();
+
+    el.done.hidden = true;
+    el.entry.hidden = false;
+    el.controls.hidden = false;
+
+    el.word.textContent = current.word;
+    el.pos.textContent = current.partOfSpeech || "";
+    el.pos.hidden = !current.partOfSpeech;
+    el.definition.textContent = current.definition;
+
+    el.back.hidden = !revealed;
+    el.hint.hidden = revealed;
+    el.reveal.hidden = revealed;
+    el.grades.hidden = !revealed;
+    el.keys.textContent = revealed ? "1 again · 2 hard · 3 good · 4 easy" : "Space to reveal";
+
+    if (revealed) {
+      var btns = el.grades.querySelectorAll(".grade");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].querySelector("small").textContent = preview(current.word, i);
+      }
+    }
+
+    var total = graded + queue.length;
+    el.rail.style.width = total ? (graded / total * 100) + "%" : "0%";
+    el.tally.innerHTML = "<b>" + queue.length + "</b> to go · " +
+      countNewRemaining() + " not started";
+  }
+
+  function renderDone() {
+    el.entry.hidden = true;
+    el.controls.hidden = true;
+    el.done.hidden = false;
+    el.rail.style.width = "100%";
+
+    var remaining = countNewRemaining();
+    var next = nextDueDate();
+
+    if (!cards.length) {
+      el.doneTitle.textContent = "No words loaded";
+      el.doneBody.textContent = "cards.js is missing or empty. Regenerate it and put it beside index.html.";
+      el.doneAction.hidden = true;
+    } else if (graded > 0) {
+      el.doneTitle.textContent = "Done for today";
+      el.doneBody.textContent = graded + " card" + (graded === 1 ? "" : "s") + " reviewed." +
+        (next !== null ? " Next batch in " + next + " day" + (next === 1 ? "" : "s") + "." : "");
+    } else if (next !== null) {
+      el.doneTitle.textContent = "Nothing due yet";
+      el.doneBody.textContent = "Your next words come back in " + next + " day" + (next === 1 ? "" : "s") +
+        ". Spacing them out is the point — cramming today buys you nothing next month.";
+    } else {
+      el.doneTitle.textContent = "Ready when you are";
+      el.doneBody.textContent = "Nothing is scheduled yet.";
+    }
+
+    if (remaining > 0 && cards.length) {
+      el.doneAction.hidden = false;
+      el.doneAction.textContent = "Learn 10 more now (" + remaining + " still untouched)";
+    } else {
+      el.doneAction.hidden = true;
+    }
+    el.tally.innerHTML = "<b>" + countDue() + "</b> to go · " + remaining + " not started";
+  }
+
+  function grade(g) {
+    var current = queue.shift();
+    if (!current) return;
+    var wasNew = !card(current.word);
+    var ivl = schedule(current.word, g);
+    if (wasNew) { settings.newCount += 1; write(SETTINGS_KEY, settings); }
+    if (ivl === 0) queue.splice(Math.min(4, queue.length), 0, current);
+    else graded += 1;
+    revealed = false;
+    write(PROGRESS_KEY, progress);
+    render();
+  }
+
+  // ---------- events ----------
+  el.reveal.addEventListener("click", function () { revealed = true; render(); });
+  el.grades.addEventListener("click", function (e) {
+    var b = e.target.closest(".grade");
+    if (b) grade(Number(b.dataset.g));
+  });
+  el.doneAction.addEventListener("click", function () {
+    buildQueue(10);
+    revealed = false;
+    render();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT") return;
+    if (!queue.length) return;
+    if (!revealed && (e.code === "Space" || e.code === "Enter")) {
+      e.preventDefault(); revealed = true; render(); return;
+    }
+    if (revealed && e.key >= "1" && e.key <= "4") {
+      e.preventDefault(); grade(Number(e.key) - 1);
+    }
+  });
+
+  el.togglePanel.addEventListener("click", function () {
+    var open = el.panel.hidden;
+    el.panel.hidden = !open;
+    el.togglePanel.textContent = open ? "Close" : "Settings";
+    if (open) {
+      el.newper.value = settings.newPerDay;
+      var learning = 0, review = 0;
+      cards.forEach(function (c) {
+        var s = stateOf(c.word);
+        if (s === "learning") learning++;
+        else if (s === "review") review++;
+      });
+      $("stat-total").textContent = cards.length + " words";
+      $("stat-learning").textContent = learning;
+      $("stat-review").textContent = review;
+      $("stat-new").textContent = countNewRemaining();
+    }
+  });
+  el.newper.addEventListener("change", function () {
+    var n = parseInt(el.newper.value, 10);
+    settings.newPerDay = isNaN(n) ? 10 : Math.max(0, Math.min(100, n));
+    el.newper.value = settings.newPerDay;
+    write(SETTINGS_KEY, settings);
+    if (!queue.length) { buildQueue(0); render(); }
+  });
+  el.reset.addEventListener("click", function () {
+    if (!confirm("Erase every scheduled word and start over? This cannot be undone.")) return;
+    progress = {};
+    settings.newCount = 0;
+    write(PROGRESS_KEY, progress);
+    write(SETTINGS_KEY, settings);
+    buildQueue(0);
+    revealed = false;
+    el.panel.hidden = true;
+    el.togglePanel.textContent = "Settings";
+    render();
+  });
+
+  buildQueue(0);
+  render();
+})();
+</script>
+</body>
+</html>
