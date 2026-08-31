@@ -357,7 +357,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
       else if (daysUntil(p.due) <= 0) due.push(c);
     });
     var allowance = Math.max(0, settings.newPerDay - settings.newCount) + (extraNew || 0);
-    queue = shuffle(due).concat(fresh.slice(0, allowance));
+    // Shuffle the new words too. The deck is generated in alphabetical order,
+    // so taking them off the front unshuffled would spend a student's first
+    // week entirely on A.
+    queue = shuffle(due).concat(shuffle(fresh).slice(0, allowance));
     graded = 0;
   }
 

@@ -2,922 +2,1152 @@
 window.VOCAB_CARDS = [
  {
   "word": "abate",
-  "definition": "To lessen in force or intensity; to subside or die down."
+  "definition": "To lessen in force or intensity; to subside or die down.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "accede",
-  "definition": "To assent or agree, esp. after initial reluctance; to yield."
+  "definition": "To assent or agree, esp. after initial reluctance; to yield.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "acquiesce",
-  "definition": "To accept or comply passively, without protest; to give tacit consent."
+  "definition": "To accept or comply passively, without protest; to give tacit consent.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "acrimony",
-  "definition": "Bitterness or sharpness of speech or temper, especially in dispute."
+  "definition": "Bitterness or sharpness of speech or temper, especially in dispute.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "acumen",
-  "definition": "Keenness of judgment; shrewdness in practical matters."
+  "definition": "Keenness of judgment; shrewdness in practical matters.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "adduce",
-  "definition": "To cite or offer as evidence or authority in an argument."
+  "definition": "To cite or offer as evidence or authority in an argument.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "adjudicate",
-  "definition": "To make a formal judgment on a disputed matter."
+  "definition": "To make a formal judgment on a disputed matter.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "admonish",
-  "definition": "To warn or reprove firmly but not harshly; to counsel against."
+  "definition": "To warn or reprove firmly but not harshly; to counsel against.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "aegis",
-  "definition": "The protection, backing, or sponsorship of a person or organization."
+  "definition": "The protection, backing, or sponsorship of a person or organization.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "allay",
-  "definition": "To lessen or put to rest (fear, doubt, suspicion)."
+  "definition": "To lessen or put to rest (fear, doubt, suspicion).",
+  "partOfSpeech": "verb"
  },
  {
   "word": "allude",
-  "definition": "To refer to indirectly, without naming the thing outright."
+  "definition": "To refer to indirectly, without naming the thing outright.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "ameliorate",
-  "definition": "To make better; to improve a bad situation."
+  "definition": "To make better; to improve a bad situation.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "amenable",
-  "definition": "Open to suggestion or persuasion; also, capable of being tested or judged by a given standard."
+  "definition": "Open to suggestion or persuasion; also, capable of being tested or judged by a given standard.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "anachronism",
-  "definition": "Something placed in the wrong historical period; a chronological misplacement."
+  "definition": "Something placed in the wrong historical period; a chronological misplacement.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "anomaly",
-  "definition": "A deviation from the normal or expected; an irregularity."
+  "definition": "A deviation from the normal or expected; an irregularity.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "antipathy",
-  "definition": "A settled aversion or dislike; deep-seated opposition."
+  "definition": "A settled aversion or dislike; deep-seated opposition.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "apocryphal",
-  "definition": "Of doubtful authenticity, though widely circulated as true."
+  "definition": "Of doubtful authenticity, though widely circulated as true.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "arbiter",
-  "definition": "A person with authority to settle a dispute or judge a matter."
+  "definition": "A person with authority to settle a dispute or judge a matter.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "arcane",
-  "definition": "Understood by few; mysterious or obscure."
+  "definition": "Understood by few; mysterious or obscure.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "archaic",
-  "definition": "Belonging to an earlier period; antiquated or outmoded."
+  "definition": "Belonging to an earlier period; antiquated or outmoded.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "ardent",
-  "definition": "Intensely enthusiastic or passionate."
+  "definition": "Intensely enthusiastic or passionate.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "ascendancy",
-  "definition": "A position of dominant power or controlling influence."
+  "definition": "A position of dominant power or controlling influence.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "ascetic",
-  "definition": "Practicing severe self-denial, especially for a moral or spiritual end; austere."
+  "definition": "Practicing severe self-denial, especially for a moral or spiritual end; austere.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "ascribe",
-  "definition": "To attribute or credit (a cause, quality, or authorship) to a source."
+  "definition": "To attribute or credit (a cause, quality, or authorship) to a source.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "assiduous",
-  "definition": "Showing great care, persistence, and diligence."
+  "definition": "Showing great care, persistence, and diligence.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "austere",
-  "definition": "Severe or plain; without ornament or comfort."
+  "definition": "Severe or plain; without ornament or comfort.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "avow",
-  "definition": "To assert or declare openly and without shame."
+  "definition": "To assert or declare openly and without shame.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "belie",
-  "definition": "To give a false impression of; to contradict or disguise (not 'to lie about')."
+  "definition": "To give a false impression of; to contradict or disguise (not 'to lie about').",
+  "partOfSpeech": "verb"
  },
  {
   "word": "benign",
-  "definition": "Gentle and harmless; favorable or benevolent."
+  "definition": "Gentle and harmless; favorable or benevolent.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "bolster",
-  "definition": "To support, strengthen, or reinforce."
+  "definition": "To support, strengthen, or reinforce.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "candor",
-  "definition": "Frankness; unreserved honesty of expression."
+  "definition": "Frankness; unreserved honesty of expression.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "canon",
-  "definition": "An authoritative body of works or rules accepted as genuine."
+  "definition": "An authoritative body of works or rules accepted as genuine.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "capricious",
-  "definition": "Given to sudden, unpredictable changes; whimsical."
+  "definition": "Given to sudden, unpredictable changes; whimsical.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "castigate",
-  "definition": "To reprimand or criticize severely."
+  "definition": "To reprimand or criticize severely.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "censure",
-  "definition": "Formal, strong expression of disapproval."
+  "definition": "Formal, strong expression of disapproval.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "charlatan",
-  "definition": "One who pretends to expertise he does not have; a quack."
+  "definition": "One who pretends to expertise he does not have; a quack.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "circumscribe",
-  "definition": "To draw a boundary around; to confine within limits."
+  "definition": "To draw a boundary around; to confine within limits.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "circumvent",
-  "definition": "To get around a rule, obstacle, or difficulty by artful means."
+  "definition": "To get around a rule, obstacle, or difficulty by artful means.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "coalesce",
-  "definition": "To come together to form one whole; to unite."
+  "definition": "To come together to form one whole; to unite.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "codify",
-  "definition": "To arrange (rules or principles) into a systematic code."
+  "definition": "To arrange (rules or principles) into a systematic code.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "cogent",
-  "definition": "Clear, logical, and convincing."
+  "definition": "Clear, logical, and convincing.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "cognizant",
-  "definition": "Aware; having knowledge or notice of something."
+  "definition": "Aware; having knowledge or notice of something.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "collusion",
-  "definition": "Secret cooperation for a deceitful or unlawful purpose."
+  "definition": "Secret cooperation for a deceitful or unlawful purpose.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "commensurate",
-  "definition": "Corresponding in size, degree, or proportion."
+  "definition": "Corresponding in size, degree, or proportion.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "conciliatory",
-  "definition": "Intended to placate or win over an opponent; appeasing."
+  "definition": "Intended to placate or win over an opponent; appeasing.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "concomitant",
-  "definition": "Naturally accompanying or associated."
+  "definition": "Naturally accompanying or associated.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "conflate",
-  "definition": "To combine two or more distinct things into one, often mistakenly."
+  "definition": "To combine two or more distinct things into one, often mistakenly.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "conjecture",
-  "definition": "An opinion or conclusion formed on incomplete evidence; a guess."
+  "definition": "An opinion or conclusion formed on incomplete evidence; a guess.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "connoisseur",
-  "definition": "An expert judge in matters of taste, especially in the fine arts."
+  "definition": "An expert judge in matters of taste, especially in the fine arts.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "connote",
-  "definition": "To imply or suggest (an idea or feeling) in addition to the literal meaning."
+  "definition": "To imply or suggest (an idea or feeling) in addition to the literal meaning.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "conundrum",
-  "definition": "A confusing and difficult problem or riddle."
+  "definition": "A confusing and difficult problem or riddle.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "corroborate",
-  "definition": "To confirm or support with evidence."
+  "definition": "To confirm or support with evidence.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "countervail",
-  "definition": "To counterbalance; to act with equal force against."
+  "definition": "To counterbalance; to act with equal force against.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "credulous",
-  "definition": "Too ready to believe; easily convinced on slight evidence."
+  "definition": "Too ready to believe; easily convinced on slight evidence.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "culpable",
-  "definition": "Deserving blame; at fault."
+  "definition": "Deserving blame; at fault.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "dearth",
-  "definition": "A scarcity; an inadequate supply."
+  "definition": "A scarcity; an inadequate supply.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "debase",
-  "definition": "To lower in quality, character, or value; to degrade."
+  "definition": "To lower in quality, character, or value; to degrade.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "deference",
-  "definition": "Humble submission to the judgment or authority of another."
+  "definition": "Humble submission to the judgment or authority of another.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "deleterious",
-  "definition": "Harmful, especially in a gradual or not-obvious way."
+  "definition": "Harmful, especially in a gradual or not-obvious way.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "delineate",
-  "definition": "To describe or portray precisely; to trace the outline of."
+  "definition": "To describe or portray precisely; to trace the outline of.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "denigrate",
-  "definition": "To disparage; to attack the reputation of."
+  "definition": "To disparage; to attack the reputation of.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "deride",
-  "definition": "To express contempt for; to ridicule."
+  "definition": "To express contempt for; to ridicule.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "dichotomy",
-  "definition": "A division into two mutually exclusive or contradictory groups."
+  "definition": "A division into two mutually exclusive or contradictory groups.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "didactic",
-  "definition": "Intended to instruct, esp. morally; sometimes tediously so."
+  "definition": "Intended to instruct, esp. morally; sometimes tediously so.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "diminution",
-  "definition": "A reduction in size, extent, or importance."
+  "definition": "A reduction in size, extent, or importance.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "disabuse",
-  "definition": "To free someone of a mistaken belief."
+  "definition": "To free someone of a mistaken belief.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "disinterested",
-  "definition": "Impartial; having no stake in the outcome. Not a synonym for uninterested."
+  "definition": "Impartial; having no stake in the outcome. Not a synonym for uninterested.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "disparage",
-  "definition": "To belittle; to speak of as being of little worth."
+  "definition": "To belittle; to speak of as being of little worth.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "disparate",
-  "definition": "Fundamentally different in kind; not comparable."
+  "definition": "Fundamentally different in kind; not comparable.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "dispassionate",
-  "definition": "Not influenced by emotion; coolly impartial."
+  "definition": "Not influenced by emotion; coolly impartial.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "dissonance",
-  "definition": "A tension or clash arising from a lack of agreement or harmony."
+  "definition": "A tension or clash arising from a lack of agreement or harmony.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "divulge",
-  "definition": "To disclose something previously private or secret."
+  "definition": "To disclose something previously private or secret.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "dogmatic",
-  "definition": "Asserting opinions as if they were incontrovertibly true."
+  "definition": "Asserting opinions as if they were incontrovertibly true.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "efficacy",
-  "definition": "The power to produce a desired result; effectiveness."
+  "definition": "The power to produce a desired result; effectiveness.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "egalitarian",
-  "definition": "Favoring equality of all people."
+  "definition": "Favoring equality of all people.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "egregious",
-  "definition": "Conspicuously bad; flagrant."
+  "definition": "Conspicuously bad; flagrant.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "emulate",
-  "definition": "To match or surpass, typically by imitation."
+  "definition": "To match or surpass, typically by imitation.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "endemic",
-  "definition": "Native to or characteristically confined to a particular place."
+  "definition": "Native to or characteristically confined to a particular place.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "engender",
-  "definition": "To give rise to; to cause or produce."
+  "definition": "To give rise to; to cause or produce.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "enmity",
-  "definition": "Deep-seated hostility; the state of being enemies."
+  "definition": "Deep-seated hostility; the state of being enemies.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "ephemeral",
-  "definition": "Lasting a very short time; fleeting."
+  "definition": "Lasting a very short time; fleeting.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "epistemology",
-  "definition": "The branch of philosophy concerned with the nature and grounds of knowledge."
+  "definition": "The branch of philosophy concerned with the nature and grounds of knowledge.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "eschew",
-  "definition": "To deliberately avoid or abstain from."
+  "definition": "To deliberately avoid or abstain from.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "esoteric",
-  "definition": "Understood by only a small group with specialized knowledge."
+  "definition": "Understood by only a small group with specialized knowledge.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "espouse",
-  "definition": "To adopt or support (a cause, belief, or way of life)."
+  "definition": "To adopt or support (a cause, belief, or way of life).",
+  "partOfSpeech": "verb"
  },
  {
   "word": "evanescent",
-  "definition": "Quickly fading or vanishing; fleeting."
+  "definition": "Quickly fading or vanishing; fleeting.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "evince",
-  "definition": "To show plainly; to make evident by conduct or expression."
+  "definition": "To show plainly; to make evident by conduct or expression.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "exacerbate",
-  "definition": "To make (a problem or negative condition) worse."
+  "definition": "To make (a problem or negative condition) worse.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "exculpatory",
-  "definition": "Tending to clear from blame or accusation."
+  "definition": "Tending to clear from blame or accusation.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "exhort",
-  "definition": "To urge strongly by advice or appeal."
+  "definition": "To urge strongly by advice or appeal.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "exigency",
-  "definition": "An urgent demand or pressing requirement of a situation."
+  "definition": "An urgent demand or pressing requirement of a situation.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "exonerate",
-  "definition": "To clear of blame or of a charge."
+  "definition": "To clear of blame or of a charge.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "expedient",
-  "definition": "Convenient and practical, though possibly improper; self-serving."
+  "definition": "Convenient and practical, though possibly improper; self-serving.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "extant",
-  "definition": "Still in existence; surviving."
+  "definition": "Still in existence; surviving.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "extenuating",
-  "definition": "Serving to lessen the seriousness of an offense by partially excusing it."
+  "definition": "Serving to lessen the seriousness of an offense by partially excusing it.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "extol",
-  "definition": "To praise enthusiastically."
+  "definition": "To praise enthusiastically.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "extrapolate",
-  "definition": "To project known values beyond the observed range; to infer the unobserved from the observed."
+  "definition": "To project known values beyond the observed range; to infer the unobserved from the observed.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "facile",
-  "definition": "Achieved too easily; superficial and lacking depth or rigor."
+  "definition": "Achieved too easily; superficial and lacking depth or rigor.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "fallacious",
-  "definition": "Resting on a logical fallacy; deceptive in its reasoning."
+  "definition": "Resting on a logical fallacy; deceptive in its reasoning.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "fiduciary",
-  "definition": "Involving trust, esp. regarding one party's duty to act for another's benefit."
+  "definition": "Involving trust, esp. regarding one party's duty to act for another's benefit.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "foment",
-  "definition": "To instigate or stir up (usually something undesirable, like unrest)."
+  "definition": "To instigate or stir up (usually something undesirable, like unrest).",
+  "partOfSpeech": "verb"
  },
  {
   "word": "forestall",
-  "definition": "To prevent or hinder by acting in advance."
+  "definition": "To prevent or hinder by acting in advance.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "fortuitous",
-  "definition": "Happening by chance. Loosely used to mean lucky; the strict sense is merely accidental."
+  "definition": "Happening by chance. Loosely used to mean lucky; the strict sense is merely accidental.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "garner",
-  "definition": "To gather, collect, or accumulate (esp. support, information, or acclaim)."
+  "definition": "To gather, collect, or accumulate (esp. support, information, or acclaim).",
+  "partOfSpeech": "verb"
  },
  {
   "word": "germane",
-  "definition": "Relevant and appropriate to the matter at hand."
+  "definition": "Relevant and appropriate to the matter at hand.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "grandiose",
-  "definition": "Impressively or pretentiously grand; inflated in scale or ambition."
+  "definition": "Impressively or pretentiously grand; inflated in scale or ambition.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "hegemony",
-  "definition": "Leadership or dominance of one group over others."
+  "definition": "Leadership or dominance of one group over others.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "iconoclast",
-  "definition": "One who attacks cherished beliefs or established conventions."
+  "definition": "One who attacks cherished beliefs or established conventions.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "idiosyncratic",
-  "definition": "Peculiar to an individual; distinctively eccentric."
+  "definition": "Peculiar to an individual; distinctively eccentric.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "illicit",
-  "definition": "Not permitted; unlawful or improper. Distinguish from elicit, to draw out."
+  "definition": "Not permitted; unlawful or improper. Distinguish from elicit, to draw out.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "immutable",
-  "definition": "Unchanging over time; unable to be altered."
+  "definition": "Unchanging over time; unable to be altered.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "impasse",
-  "definition": "A position from which there is no way forward; a deadlock."
+  "definition": "A position from which there is no way forward; a deadlock.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "impervious",
-  "definition": "Unable to be affected or penetrated (by influence, argument, or substance)."
+  "definition": "Unable to be affected or penetrated (by influence, argument, or substance).",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "impugn",
-  "definition": "To attack as false or questionable; to call into doubt."
+  "definition": "To attack as false or questionable; to call into doubt.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "impute",
-  "definition": "To attribute or assign (typically fault, motive, or responsibility) to someone."
+  "definition": "To attribute or assign (typically fault, motive, or responsibility) to someone.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "inadvertent",
-  "definition": "Unintentional; resulting from inattention rather than design."
+  "definition": "Unintentional; resulting from inattention rather than design.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "incipient",
-  "definition": "In an initial stage; beginning to appear."
+  "definition": "In an initial stage; beginning to appear.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "incontestable",
-  "definition": "Not open to dispute; beyond challenge."
+  "definition": "Not open to dispute; beyond challenge.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "inculcate",
-  "definition": "To instill an idea or habit by persistent repetition."
+  "definition": "To instill an idea or habit by persistent repetition.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "indeterminate",
-  "definition": "Not fixed or precisely determined; uncertain."
+  "definition": "Not fixed or precisely determined; uncertain.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "inexorable",
-  "definition": "Impossible to stop or prevent; relentless."
+  "definition": "Impossible to stop or prevent; relentless.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "innocuous",
-  "definition": "Not harmful or offensive; harmless."
+  "definition": "Not harmful or offensive; harmless.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "intractable",
-  "definition": "Hard to control, manage, or solve."
+  "definition": "Hard to control, manage, or solve.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "jurisprudence",
-  "definition": "The theory or philosophy of law."
+  "definition": "The theory or philosophy of law.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "juxtapose",
-  "definition": "To place side by side, esp. for contrasting effect."
+  "definition": "To place side by side, esp. for contrasting effect.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "latent",
-  "definition": "Existing but not yet developed, manifest, or active."
+  "definition": "Existing but not yet developed, manifest, or active.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "laudable",
-  "definition": "Deserving praise; commendable."
+  "definition": "Deserving praise; commendable.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "lexicon",
-  "definition": "The vocabulary of a person, language, or field of knowledge."
+  "definition": "The vocabulary of a person, language, or field of knowledge.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "magnanimous",
-  "definition": "Generous in forgiving; free of petty resentment."
+  "definition": "Generous in forgiving; free of petty resentment.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "malleable",
-  "definition": "Easily shaped, influenced, or adapted; pliable."
+  "definition": "Easily shaped, influenced, or adapted; pliable.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "mendacity",
-  "definition": "Untruthfulness; the tendency to lie or deceive."
+  "definition": "Untruthfulness; the tendency to lie or deceive.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "meticulous",
-  "definition": "Showing extreme attention to detail; very precise."
+  "definition": "Showing extreme attention to detail; very precise.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "milieu",
-  "definition": "A person's social or cultural environment."
+  "definition": "A person's social or cultural environment.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "mitigate",
-  "definition": "To make less severe, serious, or painful; to alleviate."
+  "definition": "To make less severe, serious, or painful; to alleviate.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "mollify",
-  "definition": "To appease or soothe the anger of."
+  "definition": "To appease or soothe the anger of.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "myopic",
-  "definition": "Lacking foresight or breadth of view; short-sighted."
+  "definition": "Lacking foresight or breadth of view; short-sighted.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "nascent",
-  "definition": "Just coming into existence; emerging."
+  "definition": "Just coming into existence; emerging.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "notwithstanding",
-  "definition": "In spite of; despite. Often placed after the noun it governs."
+  "definition": "In spite of; despite. Often placed after the noun it governs.",
+  "partOfSpeech": "preposition"
  },
  {
   "word": "obviate",
-  "definition": "To remove (a need or difficulty); to make unnecessary."
+  "definition": "To remove (a need or difficulty); to make unnecessary.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "onerous",
-  "definition": "Involving a heavy, burdensome obligation or effort."
+  "definition": "Involving a heavy, burdensome obligation or effort.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "opprobrium",
-  "definition": "Harsh public disgrace or scorn arising from shameful conduct."
+  "definition": "Harsh public disgrace or scorn arising from shameful conduct.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "oscillate",
-  "definition": "To swing back and forth between positions or states."
+  "definition": "To swing back and forth between positions or states.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "ostensible",
-  "definition": "Stated or appearing to be true, but not necessarily so."
+  "definition": "Stated or appearing to be true, but not necessarily so.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "ostracize",
-  "definition": "To exclude from a group by common consent."
+  "definition": "To exclude from a group by common consent.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "palpable",
-  "definition": "So intense as to seem almost tangible; readily perceived."
+  "definition": "So intense as to seem almost tangible; readily perceived.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "paradigm",
-  "definition": "A typical example or model; a framework of assumptions."
+  "definition": "A typical example or model; a framework of assumptions.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "parochial",
-  "definition": "Narrowly limited in scope or outlook; provincial."
+  "definition": "Narrowly limited in scope or outlook; provincial.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "parsimonious",
-  "definition": "Very sparing in use; economical to the point of stinginess."
+  "definition": "Very sparing in use; economical to the point of stinginess.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "paternalistic",
-  "definition": "Limiting a person's freedom on the theory that it is for that person's own good."
+  "definition": "Limiting a person's freedom on the theory that it is for that person's own good.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "patronize",
-  "definition": "To treat condescendingly; also, to be a customer of. Context decides which sense is meant."
+  "definition": "To treat condescendingly; also, to be a customer of. Context decides which sense is meant.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "paucity",
-  "definition": "The presence of something in insufficient quantity; scarcity."
+  "definition": "The presence of something in insufficient quantity; scarcity.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "pejorative",
-  "definition": "Disparaging; conveying disapproval through the choice of word itself."
+  "definition": "Disparaging; conveying disapproval through the choice of word itself.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "penchant",
-  "definition": "A strong and habitual liking or inclination."
+  "definition": "A strong and habitual liking or inclination.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "perfunctory",
-  "definition": "Done merely as a routine or duty, with little care or interest."
+  "definition": "Done merely as a routine or duty, with little care or interest.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "pernicious",
-  "definition": "Having a harmful effect, esp. in a gradual or subtle way."
+  "definition": "Having a harmful effect, esp. in a gradual or subtle way.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "piecemeal",
-  "definition": "Done a fragment at a time rather than as a whole; unsystematic."
+  "definition": "Done a fragment at a time rather than as a whole; unsystematic.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "pithy",
-  "definition": "Brief and full of meaning; terse and pointed."
+  "definition": "Brief and full of meaning; terse and pointed.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "placate",
-  "definition": "To soothe or pacify, especially by concession."
+  "definition": "To soothe or pacify, especially by concession.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "polemic",
-  "definition": "A strong verbal or written attack on an opinion or position."
+  "definition": "A strong verbal or written attack on an opinion or position.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "portend",
-  "definition": "To be a warning or sign of (a future event); to foreshadow."
+  "definition": "To be a warning or sign of (a future event); to foreshadow.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "precarious",
-  "definition": "Dangerously insecure or unstable; dependent on uncertain conditions."
+  "definition": "Dangerously insecure or unstable; dependent on uncertain conditions.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "preclude",
-  "definition": "To prevent from happening; to make impossible in advance."
+  "definition": "To prevent from happening; to make impossible in advance.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "preponderance",
-  "definition": "A superiority in weight, number, or force; the greater part."
+  "definition": "A superiority in weight, number, or force; the greater part.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "prerogative",
-  "definition": "An exclusive right or privilege attaching to a position."
+  "definition": "An exclusive right or privilege attaching to a position.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "presupposition",
-  "definition": "Something assumed in advance and required for an argument to make sense."
+  "definition": "Something assumed in advance and required for an argument to make sense.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "prevaricate",
-  "definition": "To speak or act evasively so as to avoid the truth."
+  "definition": "To speak or act evasively so as to avoid the truth.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "probative",
-  "definition": "Serving to prove; affording evidence."
+  "definition": "Serving to prove; affording evidence.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "prodigious",
-  "definition": "Remarkably great in extent, size, or degree."
+  "definition": "Remarkably great in extent, size, or degree.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "prohibitive",
-  "definition": "So high in cost or difficulty as to prevent the thing altogether."
+  "definition": "So high in cost or difficulty as to prevent the thing altogether.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "proliferate",
-  "definition": "To increase or spread rapidly."
+  "definition": "To increase or spread rapidly.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "promulgate",
-  "definition": "To promote or make widely known (an idea or doctrine); to put into effect."
+  "definition": "To promote or make widely known (an idea or doctrine); to put into effect.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "propensity",
-  "definition": "An inclination or natural tendency to behave in a particular way."
+  "definition": "An inclination or natural tendency to behave in a particular way.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "prosaic",
-  "definition": "Commonplace and unimaginative; dull and matter-of-fact."
+  "definition": "Commonplace and unimaginative; dull and matter-of-fact.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "proscribe",
-  "definition": "To forbid or condemn officially (not 'prescribe')."
+  "definition": "To forbid or condemn officially (not 'prescribe').",
+  "partOfSpeech": "verb"
  },
  {
   "word": "purported",
-  "definition": "Alleged; claimed to be so without having been established."
+  "definition": "Alleged; claimed to be so without having been established.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "purview",
-  "definition": "The scope of the influence or concerns of something."
+  "definition": "The scope of the influence or concerns of something.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "putative",
-  "definition": "Generally considered or reputed to be; supposed."
+  "definition": "Generally considered or reputed to be; supposed.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "quandary",
-  "definition": "A state of perplexity, especially over a choice between unwelcome options."
+  "definition": "A state of perplexity, especially over a choice between unwelcome options.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "quiescent",
-  "definition": "In a state of inactivity or dormancy; quiet."
+  "definition": "In a state of inactivity or dormancy; quiet.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "quintessential",
-  "definition": "Representing the purest or most perfect example of a kind."
+  "definition": "Representing the purest or most perfect example of a kind.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "quirk",
-  "definition": "A peculiarity of behavior; an idiosyncrasy. An unpredictable or unaccountable act or event; a vagary."
+  "definition": "A peculiarity of behavior; an idiosyncrasy. An unpredictable or unaccountable act or event; a vagary.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "rebuke",
-  "definition": "A sharp expression of disapproval; a reprimand."
+  "definition": "A sharp expression of disapproval; a reprimand.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "recalcitrant",
-  "definition": "Stubbornly resistant to authority or control."
+  "definition": "Stubbornly resistant to authority or control.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "redress",
-  "definition": "The setting right of a wrong; remedy or compensation."
+  "definition": "The setting right of a wrong; remedy or compensation.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "refute",
-  "definition": "To prove (a statement or theory) to be wrong."
+  "definition": "To prove (a statement or theory) to be wrong.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "rejoinder",
-  "definition": "A reply, especially a sharp or pointed answer to an objection."
+  "definition": "A reply, especially a sharp or pointed answer to an objection.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "relegate",
-  "definition": "To consign to an inferior rank or position."
+  "definition": "To consign to an inferior rank or position.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "repudiate",
-  "definition": "To reject or disown; to refuse to accept or be associated with."
+  "definition": "To reject or disown; to refuse to accept or be associated with.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "repugnance",
-  "definition": "Strong distaste or aversion; also, inconsistency between two things."
+  "definition": "Strong distaste or aversion; also, inconsistency between two things.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "salient",
-  "definition": "Most noticeable or important; prominent."
+  "definition": "Most noticeable or important; prominent.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "salutary",
-  "definition": "Producing a beneficial effect, esp. a corrective one."
+  "definition": "Producing a beneficial effect, esp. a corrective one.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "sanction",
-  "definition": "An imposed penalty for breaking a rule (contronym: it can also mean official approval)."
+  "definition": "An imposed penalty for breaking a rule (contronym: it can also mean official approval).",
+  "partOfSpeech": "noun"
  },
  {
   "word": "sardonic",
-  "definition": "Scornfully mocking; bitterly derisive."
+  "definition": "Scornfully mocking; bitterly derisive.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "scrupulous",
-  "definition": "Diligent, thorough, and careful to do what is right."
+  "definition": "Diligent, thorough, and careful to do what is right.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "seminal",
-  "definition": "Strongly influencing later developments; originative."
+  "definition": "Strongly influencing later developments; originative.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "shrewd",
-  "definition": "Having sharp, clever judgment; astute."
+  "definition": "Having sharp, clever judgment; astute.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "solipsism",
-  "definition": "The theory or self-absorbed view that only the self exists or matters."
+  "definition": "The theory or self-absorbed view that only the self exists or matters.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "specious",
-  "definition": "Superficially plausible or attractive but actually false or misleading."
+  "definition": "Superficially plausible or attractive but actually false or misleading.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "spurious",
-  "definition": "Not genuine; false or illegitimate despite appearances."
+  "definition": "Not genuine; false or illegitimate despite appearances.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "stipulate",
-  "definition": "To specify as a condition of an agreement; to grant a point for the sake of argument."
+  "definition": "To specify as a condition of an agreement; to grant a point for the sake of argument.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "stymie",
-  "definition": "To block or thwart; to present an obstacle to."
+  "definition": "To block or thwart; to present an obstacle to.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "subvert",
-  "definition": "To undermine the power or authority of an established system."
+  "definition": "To undermine the power or authority of an established system.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "supercilious",
-  "definition": "Haughtily contemptuous; behaving as though superior."
+  "definition": "Haughtily contemptuous; behaving as though superior.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "supersede",
-  "definition": "To take the place of; to displace as obsolete."
+  "definition": "To take the place of; to displace as obsolete.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "supplant",
-  "definition": "To supersede and replace, esp. by force or scheming."
+  "definition": "To supersede and replace, esp. by force or scheming.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "surreptitious",
-  "definition": "Done secretly to escape notice; stealthy."
+  "definition": "Done secretly to escape notice; stealthy.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tacit",
-  "definition": "Understood or implied without being stated."
+  "definition": "Understood or implied without being stated.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tangential",
-  "definition": "Only slightly relevant; diverging from the main point."
+  "definition": "Only slightly relevant; diverging from the main point.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tantamount",
-  "definition": "Equivalent in effect or value to something else."
+  "definition": "Equivalent in effect or value to something else.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tautology",
-  "definition": "A statement true by its own terms and so empty of content; needless repetition."
+  "definition": "A statement true by its own terms and so empty of content; needless repetition.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "tenable",
-  "definition": "Able to be defended against attack or objection."
+  "definition": "Able to be defended against attack or objection.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tenacious",
-  "definition": "Holding firmly; persistent and not easily dislodged."
+  "definition": "Holding firmly; persistent and not easily dislodged.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "tenuous",
-  "definition": "Very weak or slight; lacking a firm basis."
+  "definition": "Very weak or slight; lacking a firm basis.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "ubiquitous",
-  "definition": "Present or found everywhere."
+  "definition": "Present or found everywhere.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "unconscionable",
-  "definition": "Not guided by conscience; unreasonably excessive or shockingly unfair."
+  "definition": "Not guided by conscience; unreasonably excessive or shockingly unfair.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "unequivocal",
-  "definition": "Admitting of no doubt or misinterpretation; unambiguous."
+  "definition": "Admitting of no doubt or misinterpretation; unambiguous.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "unscrupulous",
-  "definition": "Without moral principle; unrestrained by conscience."
+  "definition": "Without moral principle; unrestrained by conscience.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "untenable",
-  "definition": "Not able to be defended against attack or objection."
+  "definition": "Not able to be defended against attack or objection.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "unwarranted",
-  "definition": "Not justified by the evidence or the circumstances."
+  "definition": "Not justified by the evidence or the circumstances.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "vacillate",
-  "definition": "To waver indecisively between different opinions or actions."
+  "definition": "To waver indecisively between different opinions or actions.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "venerate",
-  "definition": "To regard with deep respect or reverence."
+  "definition": "To regard with deep respect or reverence.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "veracity",
-  "definition": "Conformity to truth; accuracy or truthfulness."
+  "definition": "Conformity to truth; accuracy or truthfulness.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "vernacular",
-  "definition": "The everyday language or dialect of ordinary people."
+  "definition": "The everyday language or dialect of ordinary people.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "vestige",
-  "definition": "A trace or remnant of something that is no longer present."
+  "definition": "A trace or remnant of something that is no longer present.",
+  "partOfSpeech": "noun"
  },
  {
   "word": "vicarious",
-  "definition": "Experienced indirectly, through another rather than firsthand."
+  "definition": "Experienced indirectly, through another rather than firsthand.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "vindicate",
-  "definition": "To clear of blame; to show to be justified or correct."
+  "definition": "To clear of blame; to show to be justified or correct.",
+  "partOfSpeech": "verb"
  },
  {
   "word": "virulent",
-  "definition": "Extremely severe, harmful, or hostile."
+  "definition": "Extremely severe, harmful, or hostile.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "volitional",
-  "definition": "Of or resulting from an exercise of the will; chosen rather than compelled."
+  "definition": "Of or resulting from an exercise of the will; chosen rather than compelled.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "voracious",
-  "definition": "Wanting or consuming great quantities; insatiably eager."
+  "definition": "Wanting or consuming great quantities; insatiably eager.",
+  "partOfSpeech": "adjective"
  },
  {
   "word": "zenith",
-  "definition": "The highest point or culmination."
+  "definition": "The highest point or culmination.",
+  "partOfSpeech": "noun"
  }
 ];
