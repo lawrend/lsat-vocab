@@ -1,12 +1,13 @@
 # LawrenceLSAT Vocabulary — flashcards
 
-A one-page spaced-repetition drill. No accounts, no server, no build step. Four files:
+A one-page spaced-repetition drill. No accounts, no server, no build step. Five files:
 
 | File | What it is |
 | --- | --- |
 | `index.html` | The whole app: landing page, drill, styles, scheduler. |
 | `cards.js` | The deck: `window.VOCAB_CARDS = [{word, definition, partOfSpeech}]`. |
 | `context.js` | One example sentence per word: `window.VOCAB_CONTEXT = {word: sentence}`. |
+| `apple-touch-icon.png` | The home-screen and tab icon: the three-circle mark on the dark ground. |
 | `make_cards.py` | Turns the tutoring app's `vocab.json` into `cards.js`. Stdlib only. |
 
 `cards.js` in this repo was generated from the tutoring app's `vocab.json`; regenerate it whenever
@@ -41,8 +42,8 @@ there is nothing to serve.
 ## Publish it (GitHub Pages)
 
 1. New repository, public, e.g. `lsat-vocab`.
-2. Upload `index.html`, `cards.js` and `context.js`. (`make_cards.py` and this README can come
-   along or not.)
+2. Upload `index.html`, `cards.js`, `context.js` and `apple-touch-icon.png`. (`make_cards.py`
+   and this README can come along or not.)
 3. Settings → Pages → Source: *Deploy from a branch* → `main` / root → Save.
 4. A minute later it is at `https://<you>.github.io/lsat-vocab/`. Send students the link.
 
