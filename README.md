@@ -1,4 +1,4 @@
-# LSAT Vocabulary — flashcards
+# LawrenceLSAT Vocabulary — flashcards
 
 A one-page spaced-repetition drill. No accounts, no server, no build step. Four files:
 
