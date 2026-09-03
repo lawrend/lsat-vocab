@@ -5,7 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LawrenceLSAT Vocabulary</title>
 <meta name="description" content="Spaced-repetition vocabulary drilling for the LSAT.">
-<meta name="theme-color" content="#131A17">
+<!-- Colours the browser and status-bar chrome around the page. Split by
+     scheme because the app follows the system one; a single dark value put a
+     dark strip above a light page, which only becomes obvious once the app
+     runs standalone from the home screen. -->
+<meta name="theme-color" content="#ECEFEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131A17" media="(prefers-color-scheme: dark)">
+<!-- Added to an iOS home screen the app opens standalone: no address bar, no
+     Safari chrome, which is what How it works promises. The status-bar style
+     is deliberately left at its default -- black-translucent would run the
+     page up under the clock, and .shell only pads the bottom safe area. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <!-- Label under the icon when the app is added to an iOS home screen;
      without it iOS falls back to <title>, which is too long to fit. -->
 <meta name="apple-mobile-web-app-title" content="LawrenceLSAT">
