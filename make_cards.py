@@ -13,6 +13,9 @@ so you can name the right one:
 
 Citations are never copied. Only the word, its part of speech, and its
 definition reach the deck.
+
+It never touches context.js -- the "Used in context" sentences are written by
+hand -- but it does read it, and names any word that does not have one yet.
 """
 
 import argparse
@@ -76,6 +79,24 @@ def describe(records):
                 keys[k] = type(v).__name__
     width = max(len(k) for k in keys) if keys else 0
     return "\n".join("  %-*s  %s" % (width, k, s) for k, s in sorted(keys.items()))
+
+
+def context_words(path):
+    """The words context.js already has a sentence for.
+
+    Returns None when there is no context.js at all, which is a different fact
+    from an empty one: no file means the button never appears in the app.
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            text = fh.read()
+    except OSError:
+        return None
+    try:
+        return set(json.loads(text[text.index("{"):text.rindex("}") + 1]))
+    except ValueError:
+        print("Warning: could not read %s; skipping the sentence check." % path)
+        return set()
 
 
 def main():
@@ -144,6 +165,21 @@ def main():
         fh.write("window.VOCAB_CARDS = %s;\n" % body)
 
     print("Wrote %d cards to %s" % (len(cards), out))
+
+    have = context_words(os.path.join(os.path.dirname(os.path.abspath(out)), "context.js"))
+    if have is None:
+        print("No context.js beside it, so the 'Used in context' button stays hidden.")
+    else:
+        gaps = [c["word"] for c in cards if c["word"] not in have]
+        if gaps:
+            shown = ", ".join(gaps[:8])
+            print("No context sentence yet for %d word%s: %s%s\n"
+                  "  Write them into context.js by hand; this script never edits it."
+                  % (len(gaps), "" if len(gaps) == 1 else "s", shown,
+                     ", ..." if len(gaps) > 8 else ""))
+        else:
+            print("Every word has a context sentence.")
+
     if skipped:
         shown = ", ".join(skipped[:8])
         print("Skipped %d word%s with no definition: %s%s"

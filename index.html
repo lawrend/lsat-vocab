@@ -19,6 +19,7 @@
   --accent:    #E0A84B;
   --accent-in: #1B1410;
   --again:     #C4705A;
+  --brand:     #FF5E1A;
   --serif: "Newsreader", Georgia, "Iowan Old Style", serif;
   --sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -32,6 +33,7 @@
     --accent:    #9C6412;
     --accent-in: #FBF7EF;
     --again:     #9E4632;
+    --brand:     #B83D06;
   }
 }
 
@@ -57,6 +59,32 @@ button { font: inherit; color: inherit; cursor: pointer; }
   flex-direction: column;
   gap: 1rem;
 }
+
+/* ---- branding ---- */
+.brand {
+  display: flex; align-items: center; gap: .55rem;
+  text-decoration: none; color: inherit;
+  align-self: flex-start;
+}
+.brand-mark { height: .95rem; width: auto; color: var(--ink); flex: none; }
+.brand-mark circle { fill: currentColor; }
+.brand-mark circle.hollow { fill: none; stroke: currentColor; stroke-width: 2; }
+.brand-name {
+  font-size: .82rem; font-weight: 600; letter-spacing: .005em;
+  color: var(--brand);
+}
+.brand:hover .brand-name { text-decoration: underline; text-underline-offset: 3px; }
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding-top: .7rem;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem 1rem;
+  font-size: .72rem; color: var(--dim);
+}
+.foot-tag { font-family: var(--serif); font-style: italic; font-size: .8rem; }
+.foot-cta { display: flex; flex-wrap: wrap; gap: .2rem .75rem; }
+.foot a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
+.foot a:hover { text-decoration-thickness: 2px; }
 
 /* ---- top bar ---- */
 .bar { display: flex; flex-direction: column; gap: .55rem; }
@@ -115,8 +143,22 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .hint { color: var(--dim); font-size: .9rem; margin: 1.6rem 0 0; }
 
+.context { margin: 1.5rem 0 0; padding: 0; }
+.context blockquote {
+  font-family: var(--serif);
+  font-size: 1.08rem; line-height: 1.55;
+  margin: 0; padding-left: .9rem;
+  border-left: 2px solid var(--line);
+  max-width: 40ch;
+}
+.context mark { background: none; color: var(--accent); font-weight: 500; }
+.context figcaption {
+  color: var(--dim); font-size: .72rem;
+  margin-top: .5rem; padding-left: .9rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .back { animation: rise .22s ease-out both; }
+  .back, .context { animation: rise .22s ease-out both; }
   @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
 }
 
@@ -145,6 +187,24 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .grade[data-g="2"] b { color: var(--accent-in); }
 .grade[data-g="2"] small { color: color-mix(in srgb, var(--accent-in) 70%, transparent); }
 
+.context-btn {
+  width: 100%; padding: .72rem;
+  background: transparent;
+  border: 1px solid var(--line); border-radius: 3px;
+  font-size: .9rem;
+}
+.context-btn:hover { border-color: var(--dim); }
+
+/* Once the sentence is out, Hard is the best grade the card can earn, so the
+   emphasis moves off Good and onto the new ceiling. */
+.grades.hinted .grade[data-g="2"] { background: transparent; border-color: var(--line); }
+.grades.hinted .grade[data-g="2"] b { color: var(--ink); }
+.grades.hinted .grade[data-g="2"] small { color: var(--dim); }
+.grades.hinted .grade[data-g="1"] { background: var(--accent); border-color: var(--accent); }
+.grades.hinted .grade[data-g="1"] b { color: var(--accent-in); }
+.grades.hinted .grade[data-g="1"] small { color: color-mix(in srgb, var(--accent-in) 70%, transparent); }
+
+.note { color: var(--dim); font-size: .74rem; text-align: center; margin: .15rem 0 0; }
 .keys { color: var(--dim); font-size: .74rem; text-align: center; margin: .15rem 0 0; }
 @media (hover: none) { .keys { display: none; } }
 
@@ -180,6 +240,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 <body>
 <main class="shell">
 
+  <a class="brand" href="https://lawrencelsatprep.com" target="_blank" rel="noopener">
+    <svg class="brand-mark" viewBox="0 0 62 20" aria-hidden="true" focusable="false">
+      <circle cx="10" cy="10" r="9"></circle>
+      <circle class="hollow" cx="31" cy="10" r="8"></circle>
+      <circle class="hollow" cx="52" cy="10" r="8"></circle>
+    </svg>
+    <span class="brand-name">Lawrence LSAT Preparation</span>
+  </a>
+
   <div class="bar">
     <div class="rail"><span id="rail"></span></div>
     <div class="tally">
@@ -195,6 +264,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <hr>
       <p class="definition" id="definition"></p>
     </div>
+    <figure class="context" id="context" hidden>
+      <blockquote id="context-text"></blockquote>
+      <figcaption>Written for this deck, not taken from a test question.</figcaption>
+    </figure>
     <p class="hint" id="hint">Say the definition out loud, then check yourself.</p>
   </section>
 
@@ -212,6 +285,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <button class="grade" data-g="2" type="button"><b>Good</b><small></small></button>
       <button class="grade" data-g="3" type="button"><b>Easy</b><small></small></button>
     </div>
+    <button class="context-btn" id="context-btn" type="button" hidden>Used in context</button>
+    <p class="note" id="note" hidden>Sentence shown first — this card counts as Hard.</p>
     <p class="keys" id="keys">Space to reveal · 1–4 to grade</p>
   </div>
 
@@ -224,15 +299,26 @@ button { font: inherit; color: inherit; cursor: pointer; }
     <div class="row stats"><span>Learning</span><span id="stat-learning"></span></div>
     <div class="row stats"><span>Reviewing</span><span id="stat-review"></span></div>
     <div class="row stats"><span>Not started</span><span id="stat-new"></span></div>
+    <div class="row stats"><span>Needed the sentence</span><span id="stat-hinted"></span></div>
     <div class="row">
       <span>Progress is stored on this device only.</span>
       <button class="danger" id="reset" type="button">Erase progress</button>
     </div>
   </div>
 
+  <footer class="foot">
+    <span class="foot-tag">The Correct Answer</span>
+    <span class="foot-cta">
+      <span>Get LSAT tutoring:</span>
+      <a href="https://lawrencelsatprep.com" target="_blank" rel="noopener">lawrencelsatprep.com</a>
+      <a href="mailto:info@lawrencelsatprep.com">info@lawrencelsatprep.com</a>
+    </span>
+  </footer>
+
 </main>
 
 <script src="cards.js"></script>
+<script src="context.js"></script>
 <script>
 (function () {
   "use strict";
@@ -288,6 +374,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
     return c && c.word && c.definition;
   });
 
+  // context.js is optional. Without it every card simply has no sentence and
+  // the button never appears.
+  var sentences = window.VOCAB_CONTEXT || {};
+  function sentenceFor(word) {
+    var t = sentences[word];
+    return typeof t === "string" && t.trim() ? t.trim() : "";
+  }
+
   function card(word) { return progress[word] || null; }
   function stateOf(word) {
     var p = card(word);
@@ -297,8 +391,38 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
   // ---------- SM-2, lightly adapted ----------
   // grade: 0 again, 1 hard, 2 good, 3 easy
-  function schedule(word, grade) {
-    var p = progress[word] || { ef: 2.5, ivl: 0, reps: 0, lapses: 0, due: TODAY };
+  //
+  // `hinted` is true when the student read the context sentence BEFORE the
+  // definition was shown. The scheduler has to know, because a definition
+  // recalled with help is not the same observation as one recalled cold: the
+  // grade it produces overstates how well the word is actually known, and a
+  // scheduler that cannot tell the two apart keeps pushing the next review
+  // further out on the strength of answers the student did not really give.
+  // Left uncorrected that is the worst failure mode a spacing algorithm has --
+  // it is confidently wrong in the direction of forgetting.
+  //
+  // Two adjustments, and deliberately no more:
+  //
+  //   Interval.  Hard is the ceiling. A helped answer is still evidence of
+  //   partial retrieval, so the card advances (1.2x) rather than resetting,
+  //   but it cannot claim the full ease multiplier that an unaided Good earns.
+  //
+  //   Ease.      Frozen, neither penalized nor raised. Ease is a long-run
+  //   estimate of how hard this word is for this student, built from clean
+  //   observations; one contaminated observation should not be allowed to move
+  //   it in either direction. Only Again -- which means the same thing with or
+  //   without help -- updates it downward as usual.
+  //
+  // Capping rather than forcing Again is the point. If looking at the sentence
+  // cost the card its whole history, students would stop looking, and the
+  // alternative to looking is not better recall -- it is guessing, grading
+  // yourself generously, and moving on. Help that improves encoding should be
+  // cheap; only the claim about memory it contaminates is priced. A sentence
+  // read AFTER the definition is already showing costs nothing at all, because
+  // by then the retrieval attempt is over and the reading is pure encoding.
+  function schedule(word, grade, hinted) {
+    var p = progress[word] || { ef: 2.5, ivl: 0, reps: 0, lapses: 0, hints: 0, due: TODAY };
+    if (hinted) p.hints = (p.hints || 0) + 1;
     if (grade === 0) {
       p.lapses += 1;
       p.reps = 0;
@@ -308,11 +432,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
       progress[word] = p;
       return 0; // stays in this session
     }
+    var g = hinted ? 1 : grade;
     if (p.reps === 0) {
-      p.ivl = grade === 1 ? 1 : grade === 2 ? 2 : 4;
+      p.ivl = g === 1 ? 1 : g === 2 ? 2 : 4;
     } else {
-      if (grade === 1) { p.ivl = Math.max(1, Math.round(p.ivl * 1.2)); p.ef = Math.max(1.3, p.ef - 0.15); }
-      else if (grade === 2) { p.ivl = Math.max(1, Math.round(p.ivl * p.ef)); }
+      if (g === 1) { p.ivl = Math.max(1, Math.round(p.ivl * 1.2)); if (!hinted) p.ef = Math.max(1.3, p.ef - 0.15); }
+      else if (g === 2) { p.ivl = Math.max(1, Math.round(p.ivl * p.ef)); }
       else { p.ivl = Math.max(1, Math.round(p.ivl * p.ef * 1.3)); p.ef = Math.min(2.7, p.ef + 0.1); }
     }
     p.reps += 1;
@@ -321,12 +446,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
     return p.ivl;
   }
 
-  function preview(word, grade) {
+  // The numbers under the grade buttons have to show the capped intervals, or
+  // the four buttons would promise spacings that three of them cannot deliver.
+  function preview(word, grade, hinted) {
     var p = card(word);
     if (grade === 0) return "soon";
-    if (!p || p.reps === 0) return fmt(grade === 1 ? 1 : grade === 2 ? 2 : 4);
-    if (grade === 1) return fmt(Math.max(1, Math.round(p.ivl * 1.2)));
-    if (grade === 2) return fmt(Math.max(1, Math.round(p.ivl * p.ef)));
+    var g = hinted ? 1 : grade;
+    if (!p || p.reps === 0) return fmt(g === 1 ? 1 : g === 2 ? 2 : 4);
+    if (g === 1) return fmt(Math.max(1, Math.round(p.ivl * 1.2)));
+    if (g === 2) return fmt(Math.max(1, Math.round(p.ivl * p.ef)));
     return fmt(Math.max(1, Math.round(p.ivl * p.ef * 1.3)));
   }
   function fmt(days) {
@@ -339,6 +467,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   var queue = [];
   var graded = 0;
   var revealed = false;
+  var sentenceShown = false;   // the sentence is on screen for this card
+  var hinted = false;          // ...and it went up before the definition did
 
   function shuffle(a) {
     for (var i = a.length - 1; i > 0; i--) {
@@ -392,6 +522,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
     rail: $("rail"), tally: $("tally"), entry: $("entry"), word: $("word"), pos: $("pos"),
     back: $("back"), definition: $("definition"), hint: $("hint"), controls: $("controls"),
     reveal: $("reveal"), grades: $("grades"), keys: $("keys"), done: $("done"),
+    context: $("context"), contextText: $("context-text"), contextBtn: $("context-btn"),
+    note: $("note"),
     doneTitle: $("done-title"), doneBody: $("done-body"), doneAction: $("done-action"),
     panel: $("panel"), togglePanel: $("toggle-panel"), newper: $("newper"), reset: $("reset")
   };
@@ -413,12 +545,22 @@ button { font: inherit; color: inherit; cursor: pointer; }
     el.hint.hidden = revealed;
     el.reveal.hidden = revealed;
     el.grades.hidden = !revealed;
-    el.keys.textContent = revealed ? "1 again · 2 hard · 3 good · 4 easy" : "Space to reveal";
+
+    var sentence = sentenceFor(current.word);
+    el.contextBtn.hidden = !sentence || sentenceShown;
+    el.context.hidden = !sentenceShown;
+    if (sentenceShown) fillSentence(current.word, sentence);
+    el.note.hidden = !hinted;
+    el.grades.classList.toggle("hinted", hinted);
+
+    var keys = revealed ? "1 again · 2 hard · 3 good · 4 easy" : "Space to reveal";
+    if (sentence && !sentenceShown) keys += " · C for context";
+    el.keys.textContent = keys;
 
     if (revealed) {
       var btns = el.grades.querySelectorAll(".grade");
       for (var i = 0; i < btns.length; i++) {
-        btns[i].querySelector("small").textContent = preview(current.word, i);
+        btns[i].querySelector("small").textContent = preview(current.word, i, hinted);
       }
     }
 
@@ -426,6 +568,31 @@ button { font: inherit; color: inherit; cursor: pointer; }
     el.rail.style.width = total ? (graded / total * 100) + "%" : "0%";
     el.tally.innerHTML = "<b>" + queue.length + "</b> to go · " +
       countNewRemaining() + " not started";
+  }
+
+  // Mark the word inside its sentence. Built as nodes rather than markup: the
+  // sentence is data, and data never becomes HTML here. The stem match catches
+  // whichever inflection the sentence happens to use -- abate/abated/abating.
+  function fillSentence(word, sentence) {
+    var q = el.contextText;
+    q.textContent = "";
+    var stem = word.replace(/[ey]$/i, "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var hit = new RegExp("\\b" + stem + "\\w*", "i").exec(sentence);
+    if (!hit) { q.textContent = sentence; return; }
+    q.appendChild(document.createTextNode(sentence.slice(0, hit.index)));
+    var mark = document.createElement("mark");
+    mark.textContent = hit[0];
+    q.appendChild(mark);
+    q.appendChild(document.createTextNode(sentence.slice(hit.index + hit[0].length)));
+  }
+
+  function showSentence() {
+    var current = queue[0];
+    if (!current || sentenceShown || !sentenceFor(current.word)) return;
+    sentenceShown = true;
+    // Only a sentence read before the definition scaffolds the recall.
+    if (!revealed) hinted = true;
+    render();
   }
 
   function renderDone() {
@@ -467,11 +634,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
     var current = queue.shift();
     if (!current) return;
     var wasNew = !card(current.word);
-    var ivl = schedule(current.word, g);
+    var ivl = schedule(current.word, g, hinted);
     if (wasNew) { settings.newCount += 1; write(SETTINGS_KEY, settings); }
     if (ivl === 0) queue.splice(Math.min(4, queue.length), 0, current);
     else graded += 1;
     revealed = false;
+    sentenceShown = false;
+    hinted = false;
     write(PROGRESS_KEY, progress);
     render();
   }
@@ -482,14 +651,22 @@ button { font: inherit; color: inherit; cursor: pointer; }
     var b = e.target.closest(".grade");
     if (b) grade(Number(b.dataset.g));
   });
+  el.contextBtn.addEventListener("click", showSentence);
   el.doneAction.addEventListener("click", function () {
     buildQueue(10);
     revealed = false;
+    sentenceShown = false;
+    hinted = false;
     render();
   });
   document.addEventListener("keydown", function (e) {
     if (e.target.tagName === "INPUT") return;
     if (!queue.length) return;
+    // Bare 'c' only: Cmd/Ctrl+C has to stay a copy, not a hint.
+    if (!sentenceShown && (e.key === "c" || e.key === "C") &&
+        !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault(); showSentence(); return;
+    }
     if (!revealed && (e.code === "Space" || e.code === "Enter")) {
       e.preventDefault(); revealed = true; render(); return;
     }
@@ -504,16 +681,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
     el.togglePanel.textContent = open ? "Close" : "Settings";
     if (open) {
       el.newper.value = settings.newPerDay;
-      var learning = 0, review = 0;
+      var learning = 0, review = 0, needed = 0;
       cards.forEach(function (c) {
         var s = stateOf(c.word);
         if (s === "learning") learning++;
         else if (s === "review") review++;
+        var p = card(c.word);
+        if (p && p.hints) needed++;
       });
       $("stat-total").textContent = cards.length + " words";
       $("stat-learning").textContent = learning;
       $("stat-review").textContent = review;
       $("stat-new").textContent = countNewRemaining();
+      $("stat-hinted").textContent = needed;
     }
   });
   el.newper.addEventListener("change", function () {
@@ -531,6 +711,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
     write(SETTINGS_KEY, settings);
     buildQueue(0);
     revealed = false;
+    sentenceShown = false;
+    hinted = false;
     el.panel.hidden = true;
     el.togglePanel.textContent = "Settings";
     render();
