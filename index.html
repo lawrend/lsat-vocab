@@ -85,6 +85,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-size: .72rem; color: var(--dim);
 }
 .foot-tag { font-family: var(--serif); font-style: italic; font-size: .8rem; }
+.foot-name { font-style: normal; font-weight: 500; color: var(--ink); }
 .foot-cta { display: flex; flex-wrap: wrap; gap: .2rem .75rem; }
 .foot a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
 .foot a:hover { text-decoration-thickness: 2px; }
@@ -119,7 +120,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   letter-spacing: -.02em; margin: 0;
 }
 .lede-title b { font-weight: 400; color: var(--accent); }
-.lede-sub { color: var(--dim); font-size: .95rem; line-height: 1.6; margin: .65rem 0 0; max-width: 36ch; }
 .meter { height: 2px; background: var(--line); margin-top: 1.1rem; }
 .meter span { display: block; height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; }
 
@@ -309,24 +309,23 @@ button { font: inherit; color: inherit; cursor: pointer; }
   <section class="landing" id="landing" hidden>
     <div class="lede">
       <h1 class="lede-title" id="lede-title"></h1>
-      <p class="lede-sub" id="lede-sub"></p>
       <div class="meter" id="meter" role="progressbar" aria-label="Words started" hidden>
         <span id="meter-fill"></span>
       </div>
     </div>
 
-    <button class="reveal" id="start" type="button">Start</button>
+    <button class="reveal" id="start" type="button">Begin</button>
 
     <div class="tabs" role="tablist" aria-label="About this deck">
       <button class="tab" type="button" role="tab" id="tab-progress"
-              data-tab="progress" aria-controls="pane-progress" aria-selected="true">Progress</button>
+              data-tab="progress" aria-controls="pane-progress" aria-selected="false">Progress</button>
       <button class="tab" type="button" role="tab" id="tab-how"
               data-tab="how" aria-controls="pane-how" aria-selected="false" tabindex="-1">How it works</button>
       <button class="tab" type="button" role="tab" id="tab-about"
               data-tab="about" aria-controls="pane-about" aria-selected="false" tabindex="-1">About</button>
     </div>
 
-    <div class="pane" id="pane-progress" role="tabpanel" aria-labelledby="tab-progress" data-pane="progress"></div>
+    <div class="pane" id="pane-progress" role="tabpanel" aria-labelledby="tab-progress" data-pane="progress" hidden></div>
 
     <div class="pane" id="pane-how" role="tabpanel" aria-labelledby="tab-how" data-pane="how" hidden>
       <h2>Spaced repetition, briefly</h2>
@@ -461,7 +460,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   </div>
 
   <footer class="foot">
-    <span class="foot-tag">The Correct Answer</span>
+    <span class="foot-tag"><span class="foot-name">Lawrence LSAT</span> — The Correct Answer</span>
     <span class="foot-cta">
       <span>Get LSAT tutoring:</span>
       <a href="https://lawrencelsatprep.com" target="_blank" rel="noopener">lawrencelsatprep.com</a>
@@ -682,7 +681,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     doneTitle: $("done-title"), doneBody: $("done-body"), doneAction: $("done-action"),
     panel: $("panel"), togglePanel: $("toggle-panel"), newper: $("newper"), reset: $("reset"),
     landing: $("landing"), bar: $("bar"), start: $("start"), goHome: $("go-home"),
-    ledeTitle: $("lede-title"), ledeSub: $("lede-sub"),
+    ledeTitle: $("lede-title"),
     meter: $("meter"), meterFill: $("meter-fill"),
     paneProgress: $("pane-progress"),
     share: $("share"), sharebox: $("sharebox"), shareUrl: $("shareurl"),
@@ -769,42 +768,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
 
   function renderLanding() {
-    var due = countDue();
     var started = countStarted();
-    var fresh = countNewRemaining();
-    var allowance = Math.max(0, settings.newPerDay - settings.newCount);
-    var next = nextDueDate();
-    var title, sub;
+    // "To go" is the words you have not met yet; once a word is in the system
+    // the schedule keeps bringing it back on its own.
+    var toGo = cards.length - started;
 
-    if (!cards.length) {
-      title = "No words loaded";
-      sub = "cards.js is missing or empty.";
-    } else if (started === 0) {
-      title = cards.length + " words";
-      sub = "The vocabulary that actually turns up on the LSAT. " + (settings.newPerDay > 0
-        ? Math.min(settings.newPerDay, cards.length) + " new ones a day, each coming " +
-          "back just before you would have forgotten it."
-        : "New words are switched off \u2014 raise the daily number below to begin.");
-    } else if (due > 0) {
-      title = "<b>" + due + "</b> due today";
-      sub = started + " of " + cards.length + " words started" +
-        (fresh && allowance ? ", and " + Math.min(allowance, fresh) + " new one" +
-          (Math.min(allowance, fresh) === 1 ? "" : "s") + " waiting." : ".");
-    } else if (fresh > 0 && allowance > 0) {
-      title = "Nothing due";
-      sub = Math.min(allowance, fresh) + " new word" + (Math.min(allowance, fresh) === 1 ? "" : "s") +
-        " ready when you are. " + started + " of " + cards.length + " started.";
-    } else {
-      title = "All caught up";
-      sub = (next !== null ? "Your next words come back in " + next + " day" +
-        (next === 1 ? "" : "s") + ". " : "") + started + " of " + cards.length + " started" +
-        (fresh > 0 && settings.newPerDay === 0 ? ", and new words are switched off." : ".");
-    }
-
-    // title is built here from numbers only -- the one tag in it is ours.
-    el.ledeTitle.innerHTML = title;
-    el.ledeSub.textContent = sub;
-    el.start.textContent = started === 0 ? "Start learning" : "Start review";
+    // The counts are ours, and the one tag in the line is ours too.
+    el.ledeTitle.innerHTML = cards.length
+      ? "<b>" + toGo + "</b>/" + cards.length + " words to go"
+      : "No words loaded";
+    el.start.textContent = "Begin";
 
     el.meter.hidden = started === 0 || !cards.length;
     if (!el.meter.hidden) {
@@ -828,9 +801,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
       el.controls.hidden = true;
       el.paneProgress.appendChild(el.panel);
       el.panel.hidden = false;
-      // Always arrive on Progress: coming back from a session, what you want
-      // to see is what the session did, not the tab you last read.
-      selectTab("progress");
+      // Arrive folded shut. The numbers are one click away under Progress,
+      // and the page stays down to a headline and a button until you ask.
+      selectTab(null);
       renderLanding();
     } else {
       panelHome.parent.insertBefore(el.panel, panelHome.next);
@@ -844,12 +817,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
   // change the counts from either side.
   function refresh() { view === "landing" ? renderLanding() : render(); }
 
+  // name of a tab to open it, null to close whichever one is open.
   function selectTab(name) {
     var tabs = el.landing.querySelectorAll(".tab");
     for (var i = 0; i < tabs.length; i++) {
       var on = tabs[i].dataset.tab === name;
       tabs[i].setAttribute("aria-selected", on ? "true" : "false");
-      tabs[i].tabIndex = on ? 0 : -1;
+      // With everything shut the first tab keeps the strip reachable by Tab.
+      tabs[i].tabIndex = (name === null ? i === 0 : on) ? 0 : -1;
     }
     var panes = el.landing.querySelectorAll(".pane");
     for (var j = 0; j < panes.length; j++) panes[j].hidden = panes[j].dataset.pane !== name;
@@ -924,7 +899,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
   el.landing.querySelector(".tabs").addEventListener("click", function (e) {
     var t = e.target.closest(".tab");
-    if (t) selectTab(t.dataset.tab);
+    // Clicking the open tab again folds it back away.
+    if (t) selectTab(t.getAttribute("aria-selected") === "true" ? null : t.dataset.tab);
   });
   el.landing.querySelector(".tabs").addEventListener("keydown", function (e) {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
