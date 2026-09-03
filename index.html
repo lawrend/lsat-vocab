@@ -105,6 +105,60 @@ button { font: inherit; color: inherit; cursor: pointer; }
   text-underline-offset: 3px; text-decoration-thickness: 1px;
 }
 .tally button:hover { color: var(--ink); }
+.tally-actions { display: flex; gap: .9rem; }
+
+/* ---- landing ---- */
+.landing { flex: 1; display: flex; flex-direction: column; gap: 1.15rem; }
+.lede { padding-top: .4rem; }
+.lede-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2rem, 9vw, 3rem); line-height: 1.08;
+  letter-spacing: -.02em; margin: 0;
+}
+.lede-title b { font-weight: 400; color: var(--accent); }
+.lede-sub { color: var(--dim); font-size: .95rem; line-height: 1.6; margin: .65rem 0 0; max-width: 36ch; }
+.meter { height: 2px; background: var(--line); margin-top: 1.1rem; }
+.meter span { display: block; height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; }
+
+.tabs { display: flex; gap: .1rem; border-bottom: 1px solid var(--line); }
+.tab {
+  background: none; border: 0; padding: .55rem .7rem;
+  color: var(--dim); font-size: .85rem;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.pane { font-size: .88rem; line-height: 1.65; color: var(--dim); }
+.pane h2 {
+  font-family: var(--serif); font-weight: 500; font-size: 1.05rem;
+  color: var(--ink); margin: 1.25rem 0 .35rem;
+}
+.pane h2:first-child { margin-top: .15rem; }
+.pane p { margin: 0 0 .55rem; max-width: 46ch; }
+.pane b { color: var(--ink); font-weight: 500; }
+.pane a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.pane ul { margin: .35rem 0 .65rem; padding-left: 1.1rem; }
+.pane li { margin-bottom: .4rem; max-width: 46ch; }
+/* The panel supplies its own rule when it sits under the drill; inside a tab
+   the tab strip has already drawn one. */
+#pane-progress .panel { border-top: 0; padding-top: 0; }
+
+.sharebox { display: grid; gap: .5rem; }
+.sharebox input {
+  width: 100%; padding: .45rem .55rem;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px;
+  font: inherit; font-size: .78rem;
+}
+.sharerow { display: flex; gap: .5rem; }
+.btn-mini {
+  flex: 1; text-align: center; padding: .45rem;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px;
+  font-size: .8rem; text-decoration: none;
+}
+.btn-mini:hover { border-color: var(--dim); }
 
 /* ---- the entry ---- */
 .entry {
@@ -249,11 +303,96 @@ button { font: inherit; color: inherit; cursor: pointer; }
     <span class="brand-name">Lawrence LSAT Preparation</span>
   </a>
 
-  <div class="bar">
+  <section class="landing" id="landing" hidden>
+    <div class="lede">
+      <h1 class="lede-title" id="lede-title"></h1>
+      <p class="lede-sub" id="lede-sub"></p>
+      <div class="meter" id="meter" role="progressbar" aria-label="Words started" hidden>
+        <span id="meter-fill"></span>
+      </div>
+    </div>
+
+    <button class="reveal" id="start" type="button">Start</button>
+
+    <div class="tabs" role="tablist" aria-label="About this deck">
+      <button class="tab" type="button" role="tab" id="tab-progress"
+              data-tab="progress" aria-controls="pane-progress" aria-selected="true">Progress</button>
+      <button class="tab" type="button" role="tab" id="tab-how"
+              data-tab="how" aria-controls="pane-how" aria-selected="false" tabindex="-1">How it works</button>
+      <button class="tab" type="button" role="tab" id="tab-about"
+              data-tab="about" aria-controls="pane-about" aria-selected="false" tabindex="-1">About</button>
+    </div>
+
+    <div class="pane" id="pane-progress" role="tabpanel" aria-labelledby="tab-progress" data-pane="progress"></div>
+
+    <div class="pane" id="pane-how" role="tabpanel" aria-labelledby="tab-how" data-pane="how" hidden>
+      <h2>Spaced repetition, briefly</h2>
+      <p>Each word comes back just before you would have forgotten it. Answer well
+        and the gap until you see it again grows; answer badly and it shrinks back
+        to nothing. Words you find hard keep turning up, words you know get out of
+        your way.</p>
+
+      <h2>Grading yourself honestly</h2>
+      <p>Say the definition out loud before you show it, then grade what actually
+        happened: <b>Again</b> if you drew a blank, <b>Hard</b> if it came slowly,
+        <b>Good</b> if it came, <b>Easy</b> if it was instant. The number under each
+        button is when the word would come back. Grading yourself generously only
+        buys you a word you will have forgotten by test day.</p>
+
+      <h2>Used in context</h2>
+      <p>Every card has a sentence using the word, written for this deck and not
+        taken from any test question. Opening it <b>before</b> the definition caps
+        that card at <b>Hard</b> — a word you needed help with is not yet a word you
+        know, and the schedule should not pretend otherwise. Opening it after you
+        have already checked yourself costs nothing.</p>
+
+      <h2>Ten new words a day</h2>
+      <p>New words arrive ten at a time, which is what stops all 230 from landing in
+        one evening and coming due together forever after. Change the number under
+        <b>Progress</b>.</p>
+
+      <h2>Keep it on your phone</h2>
+      <p>Added to your home screen it opens like an app: full screen, no address
+        bar, one tap from wherever you keep it.</p>
+      <ul>
+        <li><b>iPhone or iPad:</b> open it in Safari, tap the Share button, then
+          <b>Add to Home Screen</b>.
+          <a href="https://support.apple.com/guide/iphone/bookmark-a-website-iph42ab2f3a7/ios" target="_blank" rel="noopener">Apple's instructions</a></li>
+        <li><b>Android:</b> open it in Chrome, tap the ⋮ menu, then <b>Add to Home
+          screen</b>.
+          <a href="https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Google's instructions</a></li>
+      </ul>
+
+      <h2>Your progress stays here</h2>
+      <p>It lives in this browser, on this device. There is no account and nothing
+        is sent anywhere. A different phone means different progress, and clearing
+        your site data erases it — as does Safari's automatic purge for sites you
+        have not opened in a week, which visiting it fixes.</p>
+    </div>
+
+    <div class="pane" id="pane-about" role="tabpanel" aria-labelledby="tab-about" data-pane="about" hidden>
+      <p>Built and kept up by <b>Douglas Lawrence</b> of <b>Lawrence LSAT
+        Preparation</b>, for his students and for anyone else who wants it.</p>
+      <p>The words are ones that actually turn up in LSAT Reading Comprehension
+        passages and Logical Reasoning arguments, each defined in the sense the test
+        uses rather than the first sense a dictionary gives. The example sentences
+        are written fresh for this deck.</p>
+      <p>Free to use, and free to pass on.</p>
+      <ul>
+        <li><a href="https://lawrencelsatprep.com" target="_blank" rel="noopener">lawrencelsatprep.com</a></li>
+        <li><a href="mailto:info@lawrencelsatprep.com">info@lawrencelsatprep.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="bar" id="bar" hidden>
     <div class="rail"><span id="rail"></span></div>
     <div class="tally">
       <div id="tally">Loading…</div>
-      <button id="toggle-panel" type="button">Settings</button>
+      <div class="tally-actions">
+        <button id="go-home" type="button">Home</button>
+        <button id="toggle-panel" type="button">Settings</button>
+      </div>
     </div>
   </div>
 
@@ -303,6 +442,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
     <div class="row">
       <span>Progress is stored on this device only.</span>
       <button class="danger" id="reset" type="button">Erase progress</button>
+    </div>
+    <div class="row">
+      <span>Send this to someone studying for the same test.</span>
+      <button class="linkish" id="share" type="button">Share</button>
+    </div>
+    <div class="sharebox" id="sharebox" hidden>
+      <input type="text" id="shareurl" readonly aria-label="Link to this app">
+      <div class="sharerow">
+        <button class="btn-mini" id="share-copy" type="button">Copy link</button>
+        <a class="btn-mini" id="share-mail" href="#">Email</a>
+        <a class="btn-mini" id="share-sms" href="#">Text</a>
+      </div>
     </div>
   </div>
 
@@ -464,6 +615,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
 
   // ---------- the session queue ----------
+  var view = "landing";       // "landing" until Start is pressed
   var queue = [];
   var graded = 0;
   var revealed = false;
@@ -525,8 +677,20 @@ button { font: inherit; color: inherit; cursor: pointer; }
     context: $("context"), contextText: $("context-text"), contextBtn: $("context-btn"),
     note: $("note"),
     doneTitle: $("done-title"), doneBody: $("done-body"), doneAction: $("done-action"),
-    panel: $("panel"), togglePanel: $("toggle-panel"), newper: $("newper"), reset: $("reset")
+    panel: $("panel"), togglePanel: $("toggle-panel"), newper: $("newper"), reset: $("reset"),
+    landing: $("landing"), bar: $("bar"), start: $("start"), goHome: $("go-home"),
+    ledeTitle: $("lede-title"), ledeSub: $("lede-sub"),
+    meter: $("meter"), meterFill: $("meter-fill"),
+    paneProgress: $("pane-progress"),
+    share: $("share"), sharebox: $("sharebox"), shareUrl: $("shareurl"),
+    shareCopy: $("share-copy"), shareMail: $("share-mail"), shareSms: $("share-sms")
   };
+
+  // The settings panel is a single element that moves: under the drill it is
+  // toggled by the Settings button, on the landing page it lives in the
+  // Progress tab. One node, so the stats and the controls are never built or
+  // wired up twice.
+  var panelHome = { parent: el.panel.parentNode, next: el.panel.nextSibling };
 
   function render() {
     var current = queue[0];
@@ -595,6 +759,99 @@ button { font: inherit; color: inherit; cursor: pointer; }
     render();
   }
 
+  function countStarted() {
+    var n = 0;
+    cards.forEach(function (c) { if (card(c.word)) n++; });
+    return n;
+  }
+
+  function renderLanding() {
+    var due = countDue();
+    var started = countStarted();
+    var fresh = countNewRemaining();
+    var allowance = Math.max(0, settings.newPerDay - settings.newCount);
+    var next = nextDueDate();
+    var title, sub;
+
+    if (!cards.length) {
+      title = "No words loaded";
+      sub = "cards.js is missing or empty.";
+    } else if (started === 0) {
+      title = cards.length + " words";
+      sub = "The vocabulary that actually turns up on the LSAT. " + (settings.newPerDay > 0
+        ? Math.min(settings.newPerDay, cards.length) + " new ones a day, each coming " +
+          "back just before you would have forgotten it."
+        : "New words are switched off \u2014 raise the daily number below to begin.");
+    } else if (due > 0) {
+      title = "<b>" + due + "</b> due today";
+      sub = started + " of " + cards.length + " words started" +
+        (fresh && allowance ? ", and " + Math.min(allowance, fresh) + " new one" +
+          (Math.min(allowance, fresh) === 1 ? "" : "s") + " waiting." : ".");
+    } else if (fresh > 0 && allowance > 0) {
+      title = "Nothing due";
+      sub = Math.min(allowance, fresh) + " new word" + (Math.min(allowance, fresh) === 1 ? "" : "s") +
+        " ready when you are. " + started + " of " + cards.length + " started.";
+    } else {
+      title = "All caught up";
+      sub = (next !== null ? "Your next words come back in " + next + " day" +
+        (next === 1 ? "" : "s") + ". " : "") + started + " of " + cards.length + " started" +
+        (fresh > 0 && settings.newPerDay === 0 ? ", and new words are switched off." : ".");
+    }
+
+    // title is built here from numbers only -- the one tag in it is ours.
+    el.ledeTitle.innerHTML = title;
+    el.ledeSub.textContent = sub;
+    el.start.textContent = started === 0 ? "Start learning" : "Start review";
+
+    el.meter.hidden = started === 0 || !cards.length;
+    if (!el.meter.hidden) {
+      el.meterFill.style.width = (started / cards.length * 100) + "%";
+      el.meter.setAttribute("aria-valuemin", "0");
+      el.meter.setAttribute("aria-valuemax", String(cards.length));
+      el.meter.setAttribute("aria-valuenow", String(started));
+    }
+    fillPanel();
+  }
+
+  function setView(next) {
+    view = next;
+    var home = next === "landing";
+    el.landing.hidden = !home;
+    el.bar.hidden = home;
+    el.sharebox.hidden = true;
+    if (home) {
+      el.entry.hidden = true;
+      el.done.hidden = true;
+      el.controls.hidden = true;
+      el.paneProgress.appendChild(el.panel);
+      el.panel.hidden = false;
+      // Always arrive on Progress: coming back from a session, what you want
+      // to see is what the session did, not the tab you last read.
+      selectTab("progress");
+      renderLanding();
+    } else {
+      panelHome.parent.insertBefore(el.panel, panelHome.next);
+      el.panel.hidden = true;
+      el.togglePanel.textContent = "Settings";
+      render();
+    }
+  }
+
+  // Whichever screen is showing, redraw it. Used by the controls that can
+  // change the counts from either side.
+  function refresh() { view === "landing" ? renderLanding() : render(); }
+
+  function selectTab(name) {
+    var tabs = el.landing.querySelectorAll(".tab");
+    for (var i = 0; i < tabs.length; i++) {
+      var on = tabs[i].dataset.tab === name;
+      tabs[i].setAttribute("aria-selected", on ? "true" : "false");
+      tabs[i].tabIndex = on ? 0 : -1;
+    }
+    var panes = el.landing.querySelectorAll(".pane");
+    for (var j = 0; j < panes.length; j++) panes[j].hidden = panes[j].dataset.pane !== name;
+  }
+
   function renderDone() {
     el.entry.hidden = true;
     el.controls.hidden = true;
@@ -651,6 +908,32 @@ button { font: inherit; color: inherit; cursor: pointer; }
     var b = e.target.closest(".grade");
     if (b) grade(Number(b.dataset.g));
   });
+  el.start.addEventListener("click", function () {
+    // Only rebuild when there is nothing left over, so stepping out to Home
+    // mid-session and coming back does not reshuffle what you were doing.
+    if (!queue.length) buildQueue(0);
+    revealed = false;
+    sentenceShown = false;
+    hinted = false;
+    setView("drill");
+  });
+  el.goHome.addEventListener("click", function () { setView("landing"); });
+
+  el.landing.querySelector(".tabs").addEventListener("click", function (e) {
+    var t = e.target.closest(".tab");
+    if (t) selectTab(t.dataset.tab);
+  });
+  el.landing.querySelector(".tabs").addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    var tabs = [].slice.call(el.landing.querySelectorAll(".tab"));
+    var i = tabs.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    var to = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+    selectTab(to.dataset.tab);
+    to.focus();
+  });
+
   el.contextBtn.addEventListener("click", showSentence);
   el.doneAction.addEventListener("click", function () {
     buildQueue(10);
@@ -660,6 +943,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     render();
   });
   document.addEventListener("keydown", function (e) {
+    if (view !== "drill") return;   // the landing page has its own controls
     if (e.target.tagName === "INPUT") return;
     if (!queue.length) return;
     // Bare 'c' only: Cmd/Ctrl+C has to stay a copy, not a hint.
@@ -675,33 +959,36 @@ button { font: inherit; color: inherit; cursor: pointer; }
     }
   });
 
+  function fillPanel() {
+    el.newper.value = settings.newPerDay;
+    var learning = 0, review = 0, needed = 0;
+    cards.forEach(function (c) {
+      var s = stateOf(c.word);
+      if (s === "learning") learning++;
+      else if (s === "review") review++;
+      var p = card(c.word);
+      if (p && p.hints) needed++;
+    });
+    $("stat-total").textContent = cards.length + " words";
+    $("stat-learning").textContent = learning;
+    $("stat-review").textContent = review;
+    $("stat-new").textContent = countNewRemaining();
+    $("stat-hinted").textContent = needed;
+  }
+
   el.togglePanel.addEventListener("click", function () {
     var open = el.panel.hidden;
     el.panel.hidden = !open;
     el.togglePanel.textContent = open ? "Close" : "Settings";
-    if (open) {
-      el.newper.value = settings.newPerDay;
-      var learning = 0, review = 0, needed = 0;
-      cards.forEach(function (c) {
-        var s = stateOf(c.word);
-        if (s === "learning") learning++;
-        else if (s === "review") review++;
-        var p = card(c.word);
-        if (p && p.hints) needed++;
-      });
-      $("stat-total").textContent = cards.length + " words";
-      $("stat-learning").textContent = learning;
-      $("stat-review").textContent = review;
-      $("stat-new").textContent = countNewRemaining();
-      $("stat-hinted").textContent = needed;
-    }
+    if (open) fillPanel();
   });
   el.newper.addEventListener("change", function () {
     var n = parseInt(el.newper.value, 10);
     settings.newPerDay = isNaN(n) ? 10 : Math.max(0, Math.min(100, n));
     el.newper.value = settings.newPerDay;
     write(SETTINGS_KEY, settings);
-    if (!queue.length) { buildQueue(0); render(); }
+    if (!queue.length) buildQueue(0);
+    refresh();
   });
   el.reset.addEventListener("click", function () {
     if (!confirm("Erase every scheduled word and start over? This cannot be undone.")) return;
@@ -713,13 +1000,70 @@ button { font: inherit; color: inherit; cursor: pointer; }
     revealed = false;
     sentenceShown = false;
     hinted = false;
-    el.panel.hidden = true;
-    el.togglePanel.textContent = "Settings";
-    render();
+    if (view === "drill") {
+      el.panel.hidden = true;
+      el.togglePanel.textContent = "Settings";
+    }
+    refresh();
+  });
+
+  // ---------- share ----------
+  // Served over http(s) the address bar is the truth; opened from a file it
+  // cannot be, so fall back to where the thing is actually published.
+  function appUrl() {
+    if (location.protocol === "http:" || location.protocol === "https:") {
+      return location.origin + location.pathname.replace(/index\.html$/, "");
+    }
+    return "https://lawrend.github.io/lsat-vocab/";
+  }
+
+  var SHARE_TITLE = "LSAT Vocabulary";
+  var SHARE_TEXT = "Free LSAT vocabulary flashcards \u2014 " +
+    "the words that actually turn up on the test, no account needed.";
+
+  function openShareBox() {
+    var url = appUrl();
+    el.shareUrl.value = url;
+    var body = encodeURIComponent(SHARE_TEXT + "\n\n" + url);
+    el.shareMail.href = "mailto:?subject=" + encodeURIComponent(SHARE_TITLE) + "&body=" + body;
+    el.shareSms.href = "sms:?&body=" + encodeURIComponent(SHARE_TEXT + " " + url);
+    el.sharebox.hidden = false;
+  }
+
+  el.share.addEventListener("click", function () {
+    var url = appUrl();
+    if (navigator.share) {
+      navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: url })
+        .catch(function (err) {
+          // A cancelled sheet is not a failure; anything else, show the links.
+          if (!err || err.name !== "AbortError") openShareBox();
+        });
+      return;
+    }
+    if (el.sharebox.hidden) openShareBox();
+    else el.sharebox.hidden = true;
+  });
+
+  el.shareCopy.addEventListener("click", function () {
+    var url = el.shareUrl.value;
+    function done() {
+      el.shareCopy.textContent = "Copied";
+      setTimeout(function () { el.shareCopy.textContent = "Copy link"; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { legacyCopy(); });
+    } else {
+      legacyCopy();
+    }
+    function legacyCopy() {
+      el.shareUrl.select();
+      try { document.execCommand("copy"); done(); }
+      catch (e) { el.shareUrl.focus(); }   // leave it selected to copy by hand
+    }
   });
 
   buildQueue(0);
-  render();
+  setView("landing");
 })();
 </script>
 </body>

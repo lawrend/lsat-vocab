@@ -4,7 +4,7 @@ A one-page spaced-repetition drill. No accounts, no server, no build step. Four 
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The whole app: markup, styles, scheduler. |
+| `index.html` | The whole app: landing page, drill, styles, scheduler. |
 | `cards.js` | The deck: `window.VOCAB_CARDS = [{word, definition, partOfSpeech}]`. |
 | `context.js` | One example sentence per word: `window.VOCAB_CONTEXT = {word: sentence}`. |
 | `make_cards.py` | Turns the tutoring app's `vocab.json` into `cards.js`. Stdlib only. |
@@ -63,6 +63,38 @@ a word from the deck leaves a harmless orphan entry in their browser storage.
 - Clearing site data erases it, as does Safari's automatic 7-day purge for sites they don't revisit
   — the fix is to visit it, which is the behavior you want anyway.
 - Adding it to the home screen makes it look and open like an app.
+
+## The landing page
+
+The app opens on a landing page rather than straight into a card. It shows where you
+are — *2 due today*, *All caught up*, or the deck size on a first visit — a **Start**
+button, and three tabs:
+
+| Tab | What is on it |
+| --- | --- |
+| **Progress** | The counts, new-words-per-day, erase progress, and Share. |
+| **How it works** | Spaced repetition in plain words, how to grade honestly, what the context sentence costs, and how to add the app to a phone's home screen. |
+| **About** | Douglas Lawrence, Lawrence LSAT Preparation, and how to get in touch. |
+
+**Home** in the drill's top bar goes back. The queue survives the round trip, so
+stepping out to check your numbers mid-session and pressing **Start** again puts you
+back on the card you left — it only rebuilds when there is nothing left over.
+
+The Progress tab and the drill's **Settings** button show the same element: there is one
+`#panel` in the document and the view switcher moves it between them. The stats and the
+controls are therefore written once, and Share is in both places without being built
+twice.
+
+## Share
+
+**Share** hands the page to `navigator.share` where the browser has it — the native sheet
+on a phone, with the recipient's own apps in it. Where it does not, it opens a small row
+with the link, a **Copy link** button and **Email** / **Text** links.
+
+The link is taken from the address bar, so a custom domain shares itself correctly with
+no change here. Opened from a `file://` path there is no address to take, and it falls
+back to the published GitHub Pages URL — the one constant in `index.html` that needs
+editing if the site ever moves.
 
 ## Used in context
 
