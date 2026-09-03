@@ -112,17 +112,36 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .tally-actions { display: flex; gap: .9rem; }
 
 /* ---- landing ---- */
-.landing { flex: 1; display: flex; flex-direction: column; gap: 1.15rem; }
-.lede { padding-top: .4rem; }
+.landing { flex: 1; display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* The same skeleton as the drill: brand at the top, a tall middle holding the
+   one thing to read, the button docked at the bottom above the footer. Begin
+   lands where Show definition will be, so pressing it swaps the screen's
+   contents without moving anything -- and the page stops stacking itself into
+   the top quarter and leaving the rest of a phone screen empty. */
+.hero {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1rem 0;
+}
+/* Sized so the count sets on one line down to a 320px phone, measured rather
+   than guessed, with room to spare for the Georgia fallback if Newsreader
+   does not load. The floor is below 9vw on purpose: a 2rem floor would have
+   overridden the scale on the narrowest screens and forced a wrap there.
+   text-wrap: balance catches anything longer that still has to break. */
 .lede-title {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(2rem, 9vw, 3rem); line-height: 1.08;
+  font-size: clamp(1.75rem, 9vw, 3.5rem); line-height: 1.05;
   letter-spacing: -.02em; margin: 0;
+  text-wrap: balance;
 }
 .lede-title b { font-weight: 400; color: var(--accent); }
-.meter { height: 2px; background: var(--line); margin-top: 1.1rem; }
-.meter span { display: block; height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; }
+/* Thick enough to read as a bar rather than a rule, and always drawn: an
+   empty track on day one keeps the composition from jumping on day two. */
+.meter { height: 4px; border-radius: 2px; background: var(--line); margin-top: 1.5rem; overflow: hidden; }
+.meter span { display: block; height: 100%; width: 0%; background: var(--accent); border-radius: 2px; transition: width .3s ease; }
 
+.landing-nav { display: flex; flex-direction: column; gap: 1.25rem; }
 .tabs { display: flex; gap: .1rem; border-bottom: 1px solid var(--line); }
 .tab {
   background: none; border: 0; padding: .55rem .7rem;
@@ -307,23 +326,25 @@ button { font: inherit; color: inherit; cursor: pointer; }
   </a>
 
   <section class="landing" id="landing" hidden>
-    <div class="lede">
-      <h1 class="lede-title" id="lede-title"></h1>
-      <div class="meter" id="meter" role="progressbar" aria-label="Words started" hidden>
-        <span id="meter-fill"></span>
+    <div class="hero">
+      <div class="lede">
+        <h1 class="lede-title" id="lede-title"></h1>
+        <div class="meter" id="meter" role="progressbar" aria-label="Words started" hidden>
+          <span id="meter-fill"></span>
+        </div>
       </div>
     </div>
 
-    <button class="reveal" id="start" type="button">Begin</button>
-
-    <div class="tabs" role="tablist" aria-label="About this deck">
-      <button class="tab" type="button" role="tab" id="tab-progress"
-              data-tab="progress" aria-controls="pane-progress" aria-selected="false">Progress</button>
-      <button class="tab" type="button" role="tab" id="tab-how"
-              data-tab="how" aria-controls="pane-how" aria-selected="false" tabindex="-1">How it works</button>
-      <button class="tab" type="button" role="tab" id="tab-about"
-              data-tab="about" aria-controls="pane-about" aria-selected="false" tabindex="-1">About</button>
-    </div>
+    <div class="landing-nav">
+      <button class="reveal" id="start" type="button">Begin</button>
+      <div class="tabs" role="tablist" aria-label="About this deck">
+        <button class="tab" type="button" role="tab" id="tab-progress"
+                data-tab="progress" aria-controls="pane-progress" aria-selected="false">Progress</button>
+        <button class="tab" type="button" role="tab" id="tab-how"
+                data-tab="how" aria-controls="pane-how" aria-selected="false" tabindex="-1">How it works</button>
+        <button class="tab" type="button" role="tab" id="tab-about"
+                data-tab="about" aria-controls="pane-about" aria-selected="false" tabindex="-1">About</button>
+      </div>
 
     <div class="pane" id="pane-progress" role="tabpanel" aria-labelledby="tab-progress" data-pane="progress" hidden></div>
 
@@ -384,6 +405,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
         <li><a href="https://lawrencelsatprep.com" target="_blank" rel="noopener">lawrencelsatprep.com</a></li>
         <li><a href="mailto:info@lawrencelsatprep.com">info@lawrencelsatprep.com</a></li>
       </ul>
+    </div>
     </div>
   </section>
 
@@ -779,7 +801,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       : "No words loaded";
     el.start.textContent = "Begin";
 
-    el.meter.hidden = started === 0 || !cards.length;
+    el.meter.hidden = !cards.length;
     if (!el.meter.hidden) {
       el.meterFill.style.width = (started / cards.length * 100) + "%";
       el.meter.setAttribute("aria-valuemin", "0");

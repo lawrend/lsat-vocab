@@ -66,9 +66,23 @@ a word from the deck leaves a harmless orphan entry in their browser storage.
 
 ## The landing page
 
-The app opens on a landing page rather than straight into a card. It shows where you
-are — *2 due today*, *All caught up*, or the deck size on a first visit — a **Start**
-button, and three tabs:
+The app opens on a landing page rather than straight into a card: how far there is to
+go, a progress bar, a **Begin** button, and three tabs that arrive folded shut. Clicking
+an open tab folds it away again.
+
+It borrows the drill's skeleton exactly — brand at the top, one thing to read in the
+middle of the screen, the button docked at the bottom above the footer. The count lands
+within a few pixels of where the word will be and **Begin** within a few of **Show
+definition**, so pressing it swaps the screen's contents without moving anything. That
+is also what keeps the page from stacking everything into the top quarter and leaving
+the rest of a phone screen empty.
+
+The count is sized to set on one line down to a 320px phone, with room left for the
+Georgia fallback if Newsreader does not load; `text-wrap: balance` handles anything
+longer that still has to break. The progress bar is drawn even at zero, so the
+composition does not jump the first time a word enters the schedule.
+
+The three tabs:
 
 | Tab | What is on it |
 | --- | --- |
@@ -77,7 +91,7 @@ button, and three tabs:
 | **About** | Douglas Lawrence, Lawrence LSAT Preparation, and how to get in touch. |
 
 **Home** in the drill's top bar goes back. The queue survives the round trip, so
-stepping out to check your numbers mid-session and pressing **Start** again puts you
+stepping out to check your numbers mid-session and pressing **Begin** again puts you
 back on the card you left — it only rebuilds when there is nothing left over.
 
 The Progress tab and the drill's **Settings** button show the same element: there is one
